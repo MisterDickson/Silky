@@ -106,6 +106,17 @@ namespace Silky
 
         public static List<Operation> operations = new List<Operation>();
 
+        public static void ExecuteOperations()
+        {
+            foreach (String filePath in PCBFiles.Keys.ToList())
+            {
+                foreach (Operation operation in operations)
+                {
+                    operation.Execute(filePath);
+                }
+            }
+        }
+
         public static List<String> OperationNames { get { return operations.Select(x => x.ToString()).ToList(); } }
 
         public static void AddUniqueOperation(String from, String to, char partType)
@@ -129,7 +140,7 @@ namespace Silky
         {
             List<String> LayerNames = new List<string>();
 
-            foreach (String filePath in PCBFiles)
+            foreach (String filePath in PCBFiles.Keys.ToList())
             {
                 String[] lines = File.ReadAllLines(filePath);
 
@@ -176,7 +187,7 @@ namespace Silky
         public static List<char> PartAcronyms()
         {
             List<char> PartAcronyms = new List<char>();
-            foreach (String filePath in PCBFiles)
+            foreach (String filePath in PCBFiles.Keys.ToList())
             {
                 String[] lines = File.ReadAllLines(filePath);
 
@@ -192,25 +203,25 @@ namespace Silky
             return PartAcronyms;
         }
 
-        private static List<String> PCBFiles = new List<string>();
+        private static Dictionary<string, string> PCBFiles = new Dictionary<string, string>(); // key = fullPath, value = fileName
 
         public static List<String> PCBNames
         {
-            get
-            {
-                List<String> PCBNames = new List<string>();
-                foreach (String filePath in PCBFiles)
-                {
-                    PCBNames.Add(System.IO.Path.GetFileName(filePath));
-                }
-                return PCBNames;
-            }
+            get { return PCBFiles.Values.ToList(); }
         }
 
-        public static void AddFile(String filePath)
+        public static string FullPath(String fileName)
         {
-            PCBFiles.Add(filePath);
-            PCBNames.Add(System.IO.Path.GetFileName(filePath));
+            foreach (KeyValuePair<string, string> entry in PCBFiles)
+            {
+                if (entry.Value == fileName) return entry.Key;
+            }
+            return null;
+        }
+
+        public static void AddFile(String fullPath)
+        {
+            PCBFiles[fullPath] = System.IO.Path.GetFileName(fullPath);
         }
 
         public static void Remove(String filePath)
