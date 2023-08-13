@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -31,7 +33,23 @@ namespace Silky
             {
                 Core.AddFile(fileName);
             }
-            PCBListView.ItemsSource = Core.PCBNames;
+
+            foreach (string PCBName in Core.PCBNames)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Content = PCBName;
+
+                PCBListView.Items.Add(item);
+            }
+
+            foreach (ListViewItem item in PCBListView.Items)
+            {
+                string fileName = item.Content.ToString();
+                string filePath = Core.FullPath(fileName);
+
+                item.ToolTip = filePath;
+                item.MouseDoubleClick += PCBName_DoubleClick;
+            }
 
             foreach (string layerName in Core.LayerNames())
             {
@@ -51,6 +69,14 @@ namespace Silky
             PresetComboBox.SelectedIndex = 0; // "No Preset" is selected
         }
 
+        private void PCBName_DoubleClick(object sender, RoutedEventArgs e)
+        {
+            string fileName = ((ListViewItem)sender).Content.ToString();
+            string filePath = Core.FullPath(fileName);
+
+            Process.Start("explorer.exe", "/select, \"" + filePath + "\"");
+        }
+
         private void PCBRemoveButton_Click(object sender, RoutedEventArgs e)
         {
             EasterEgg easterEgg = new EasterEgg();
@@ -60,7 +86,12 @@ namespace Silky
 
         private void OverrideButton_Click(object sender, RoutedEventArgs e)
         {
+            string fileName = Core.PCBNames.ElementAt(0);
+            string filePath = Core.FullPath(fileName);
 
+            if (!File.Exists(filePath)) return;
+
+            Core.ExecuteOperations();
         }
 
         private void SaveAsButton_Click(object sender, RoutedEventArgs e)
@@ -169,12 +200,14 @@ namespace Silky
 
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
         {
-            string fileName = Core.PCBNames.ElementAt(0);
-            string filePath = Core.FullPath(fileName);
+            // TODO implement temoprary operation execution
 
-            if (!File.Exists(filePath)) return;
+            List<string> fileNames = new List<string>();
 
-            Core.ExecuteOperations();
+            foreach (ListViewItem item in PCBListView.Items)
+            {
+                Process.Start("explorer.exe", Core.FullPath(item.Content.ToString()));
+            }
         }
     }
 }
