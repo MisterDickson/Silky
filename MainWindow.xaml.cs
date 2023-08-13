@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -168,7 +169,19 @@ namespace Silky
 
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
         {
+            string filePath = Core.PCBNames.ElementAt(PCBListView.SelectedIndex);
+            string tempFilePath = Path.GetTempFileName();
+
+
+
             string path = Core.operations.ElementAt(0).Execute("C:\\Users\\Ari\\Desktop\\analog_board.kicad_pcb");
+
+            // delete the original file
+            File.Delete(filePath);
+
+            // rename the temporary file to the original file name
+            File.Move(tempFilePath, filePath);
+
             MessageBox.Show(path);
         }
     }

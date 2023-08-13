@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -48,18 +49,6 @@ namespace Silky
             {
                 if (!File.Exists(filePath)) return "";
 
-                string find = "";
-                string replace = "";
-
-                switch(From)
-                {
-                    case "Part Value": find = "fp_text reference"; break;
-                    case "Part Reference": find = "fp_text value"; break;
-                    default: find = From; break;
-                }
-
-                replace = To;
-
                 string tempFilePath = Path.GetTempFileName();
 
                 using (var sr = new StreamReader(filePath))
@@ -69,17 +58,49 @@ namespace Silky
 
                     while ((line = sr.ReadLine()) != null)
                     {
-                        sw.WriteLine(line.Replace(find, replace));
+                        string writeLine = line;
+                        string layer = "layer \"";
+
+                        if (From != "Part Value" && From != "Part Reference") writeLine = line.Replace(From, To);
+                        else if (From == "Part Value")
+                        {
+                            if (line.Contains("fp_text reference \"" + PartType))
+                            {
+                                do
+                                {
+                                    if (line.Contains("fp_text value"))
+                                    {
+                                        int layerIndex = line.IndexOf(layer) + layer.Length;
+                                        int layerEndIndex = line.IndexOf("\"", layerIndex);
+                                        string layerName = line.Substring(layerIndex, layerEndIndex - layerIndex);
+                                        writeLine = line.Replace(layerName, To);
+                                        break;
+                                    }
+                                    sw.WriteLine(line);
+                                } while ((line = sr.ReadLine()) != null);
+                            }
+                        }
+                        else if (From == "Part Reference")
+                        {
+                            if (line.Contains("fp_text reference \"" + PartType))
+                            {
+                                int layerIndex = line.IndexOf(layer) + layer.Length;
+                                int layerEndIndex = line.IndexOf("\"", layerIndex);
+                                string layerName = line.Substring(layerIndex, layerEndIndex - layerIndex);
+                                writeLine = line.Replace(layerName, To);
+                            }
+                        }
+                        sw.WriteLine(writeLine);
                     }
                 }
                 
                 // delete the original file
-                //File.Delete(filePath);
+                File.Delete(filePath);
 
                 // rename the temporary file to the original file name
-                //File.Move(tempFilePath, filePath);
+                File.Move(tempFilePath, filePath);
                 
-                return tempFilePath;
+                return filePath;
             }
         }
 
