@@ -44,15 +44,48 @@ namespace Silky
                 return "Change " + From + " to " + To + " for " + PartTypeString;
             }
 
-            public string[] Execute(string[] OriginalFile)
+            public string Execute(string filePath)
             {
-                return OriginalFile;
+                if (!File.Exists(filePath)) return "";
+
+                string find = "";
+                string replace = "";
+
+                switch(From)
+                {
+                    case "Part Value": find = "fp_text reference"; break;
+                    case "Part Reference": find = "fp_text value"; break;
+                    default: find = From; break;
+                }
+
+                replace = To;
+
+                string tempFilePath = Path.GetTempFileName();
+
+                using (var sr = new StreamReader(filePath))
+                using (var sw = new StreamWriter(tempFilePath))
+                {
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        sw.WriteLine(line.Replace(find, replace));
+                    }
+                }
+                
+                // delete the original file
+                //File.Delete(filePath);
+
+                // rename the temporary file to the original file name
+                //File.Move(tempFilePath, filePath);
+                
+                return tempFilePath;
             }
         }
 
-        private static List<Operation> operations = new List<Operation>();
+        public static List<Operation> operations = new List<Operation>();
 
-        public static List<String> Operations { get { return operations.Select(x => x.ToString()).ToList(); } }
+        public static List<String> OperationNames { get { return operations.Select(x => x.ToString()).ToList(); } }
 
         public static void AddUniqueOperation(String from, String to, char partType)
         {
@@ -162,26 +195,6 @@ namespace Silky
         public static void Remove(String filePath)
         {
             PCBFiles.Remove(filePath);
-        }
-
-        public static void Layers()
-        {
-            int cnt = 0;
-            int lineCnt = 0;
-            foreach (String filePath in PCBFiles)
-            {
-                String[] lines = File.ReadAllLines(filePath);
-                foreach (String line in lines)
-                {
-                    lineCnt++;
-                    if (line.Contains("F.SilkS"))
-                    {
-                        cnt++;
-                    }
-                }
-            }
-
-            //MessageBox.Show(cnt.ToString() + " Lines read: " + lineCnt.ToString());
         }
     }
 }

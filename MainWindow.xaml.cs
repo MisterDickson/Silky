@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -84,7 +85,7 @@ namespace Silky
                     }
                 }
             }
-            OperationListView.ItemsSource = Core.Operations;
+            OperationListView.ItemsSource = Core.OperationNames;
 
             if (sender != this) // If this function was called by the preset combobox. The combobox sends this
                 PresetComboBox.SelectedIndex = 0; // "No Preset" is selected
@@ -93,12 +94,14 @@ namespace Silky
         private void PresetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (PCBListView.Items.Count < 1) return;
+            if (PresetComboBox.SelectedIndex < 1) return;
+
 
             foreach (String ListEntree in OperationListView.Items)
                 Core.RemoveOperation(ListEntree);
 
             OperationListView.ItemsSource = null;
-            OperationListView.ItemsSource = Core.Operations;
+            OperationListView.ItemsSource = Core.OperationNames;
 
             if (PresetComboBox.SelectedIndex == 1) // "Hand Soldering"
             {
@@ -118,6 +121,8 @@ namespace Silky
 
                 FromLayerListView.SelectedIndex = 1;
                 ToLayerListView.SelectedIndex = ToLayerFFabIndex;
+
+                AddOperationButton_Click(this, e);
             }
             else if (PresetComboBox.SelectedIndex == 2) // "Blank PCB"
             {
@@ -136,9 +141,11 @@ namespace Silky
                 FromLayerListView.SelectedItems.Add("B.SilkS");
 
                 ToLayerListView.SelectedItems.Add("F.Fab");
+                
+                AddOperationButton_Click(this, e);
             }
 
-            AddOperationButton_Click(this, e);
+            
         }
 
         private void FromLayerListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -154,9 +161,15 @@ namespace Silky
                 Core.RemoveOperation(ListEntree);
 
             OperationListView.ItemsSource = null;
-            OperationListView.ItemsSource = Core.Operations;
+            OperationListView.ItemsSource = Core.OperationNames;
 
             PresetComboBox.SelectedIndex = 0; // "No Preset" is selected
+        }
+
+        private void PreviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            string path = Core.operations.ElementAt(0).Execute("C:\\Users\\Ari\\Desktop\\analog_board.kicad_pcb");
+            MessageBox.Show(path);
         }
     }
 }
