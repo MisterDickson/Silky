@@ -19,7 +19,7 @@
         </Border>
 
         <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1">
-            <TextBox x:Name="SavePathTextBox" Text="*_edited" FontFamily="Consolas" Width="300" VerticalAlignment="Center"/>
+            <TextBox x:Name="SavePathTextBox" Text="*_edited" FontFamily="Consolas" Width="300" VerticalAlignment="Center" KeyDown="SavePathTextBox_KeyDown"/>
             <TextBlock VerticalAlignment="Center" FontFamily="Consolas">.kicad_pcb</TextBlock>
         </StackPanel>
 

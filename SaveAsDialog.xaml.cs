@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace Silky
 {
@@ -29,6 +30,8 @@ namespace Silky
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            SaveButton.Content = "loading...";
+
             EasterEgg ErrorMessage = new EasterEgg();
             ErrorMessage.Owner = this;
 
@@ -38,6 +41,7 @@ namespace Silky
             if (textBoxPath == "")
             {
                 ErrorMessage.ShowDialog("Looks like the provided path is too short to make sense.");
+                SaveButton.Content = "Save";
                 return;
             }
 
@@ -46,10 +50,11 @@ namespace Silky
                 if (!Directory.Exists(textBoxPath.Substring(0, textBoxPath.IndexOf(@"\")+1)))
                 {
                     ErrorMessage.ShowDialog("How about a path that exists?");
+                    SaveButton.Content = "Save";
                     return;
                 }
                 // creating every missing directory
-                string[] directories = textBoxPath.Split('\\');
+                string[] directories = textBoxPath.Split('\\').SkipLast(1).ToArray();
                 string path = "";
                 foreach (string directory in directories)
                 {
@@ -71,8 +76,52 @@ namespace Silky
             {
                 foreach (string pcbPath in Core.FullPaths())
                 {
-                    string savePath = Path.GetDirectoryName(pcbPath) + SavePathTextBox.Text;
+                    string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
+                    // creatung every missing directory
+                    string[] directories = System.IO.Path.GetDirectoryName(textBoxPath.Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb").Split('\\');
+                    string path = System.IO.Path.GetDirectoryName(pcbPath);
+                    foreach (string directory in directories)
+                    {
+                        path += directory + "\\";
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+                    }
+                    savePaths.Add(savePath);
+                    File.Copy(pcbPath, savePath, true);
                 }
+            }
+
+            Core.ExecuteOperationsOnFiles(savePaths);
+
+            if (OpenFileAfterSave.IsChecked == true)
+            {
+                foreach (string file in savePaths) Process.Start("explorer.exe", file);
+            }
+
+            if (OpenFolderAfterSave.IsChecked == true)
+            {
+                List<string> alreadyOpenedFolders = new List<string>();
+
+                foreach (string file in savePaths)
+                {
+                    if (alreadyOpenedFolders.Contains(System.IO.Path.GetDirectoryName(file))) continue;
+
+                    Process.Start("explorer.exe", "/select, \"" + file + "\"");
+                    alreadyOpenedFolders.Add(System.IO.Path.GetDirectoryName(file));
+                }
+            }
+            SaveButton.Content = "Done";
+            Close();
+        }
+
+        private void SavePathTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SaveButton.Focus();
+                SaveButton_Click(sender, e);
             }
         }
     }
