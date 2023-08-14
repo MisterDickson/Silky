@@ -45,7 +45,7 @@ namespace Silky
                 return "Change " + From + " to " + To + " for " + PartTypeString;
             }
 
-            public string Execute(string filePath)
+            public string Execute(string filePath) // Overrides the file on filePath
             {
                 if (!File.Exists(filePath)) return "";
 
@@ -106,9 +106,9 @@ namespace Silky
 
         public static List<Operation> operations = new List<Operation>();
 
-        public static void ExecuteOperations()
+        public static void ExecuteOperationsOnFiles(List<string> filePaths)
         {
-            foreach (String filePath in PCBFiles.Keys.ToList())
+            foreach (String filePath in filePaths)
             {
                 foreach (Operation operation in operations)
                 {
@@ -217,6 +217,11 @@ namespace Silky
                 if (entry.Value == fileName) return entry.Key;
             }
             return null;
+        }
+
+        public static List<string> FullPaths()
+        {
+            return PCBFiles.Keys.ToList();
         }
 
         public static void AddFile(String fullPath)

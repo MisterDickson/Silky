@@ -124,7 +124,7 @@
                 </Grid>
 
                 <ListView x:Name="OperationListView" Grid.Row="1" SelectionMode="Extended" Margin="0,0,0,10"/>
-                <Button Content="Preview" Grid.Column="0" Height="30" Style="{StaticResource AcceptButton}" x:Name="PreviewButton" Grid.Row="2" Click="PreviewButton_Click" />
+                <Button Content="Preview Selected Files" Grid.Column="0" Height="30" Style="{StaticResource AcceptButton}" x:Name="PreviewButton" Grid.Row="2" Click="PreviewButton_Click" />
             </Grid>
         </Border>
         
@@ -136,8 +136,8 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Content="Override" Grid.Column="0" Margin="0,0,5,0" Style="{StaticResource Button}" x:Name="OverrideButton" Click="OverrideButton_Click" />
-                <Button Content="Save As..." Grid.Column="1" Margin="5,0,0,0" Style="{StaticResource Button}" x:Name="SaveAsButton" Click="SaveAsButton_Click" />
+                <Button Content="Override All" Grid.Column="0" Margin="0,0,5,0" Style="{StaticResource Button}" x:Name="OverrideButton" Click="OverrideButton_Click" />
+                <Button Content="Save All As..." Grid.Column="1" Margin="5,0,0,0" Style="{StaticResource Button}" x:Name="SaveAsButton" Click="SaveAsButton_Click" />
 
             </Grid>
         </Border>

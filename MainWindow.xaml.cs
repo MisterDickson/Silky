@@ -86,12 +86,7 @@ namespace Silky
 
         private void OverrideButton_Click(object sender, RoutedEventArgs e)
         {
-            string fileName = Core.PCBNames.ElementAt(0);
-            string filePath = Core.FullPath(fileName);
-
-            if (!File.Exists(filePath)) return;
-
-            Core.ExecuteOperations();
+            Core.ExecuteOperationsOnFiles(Core.FullPaths());
         }
 
         private void SaveAsButton_Click(object sender, RoutedEventArgs e)
@@ -177,7 +172,7 @@ namespace Silky
                 AddOperationButton_Click(this, e);
             }
 
-            
+            PCBListView.SelectAll();
         }
 
         private void FromLayerListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -200,14 +195,33 @@ namespace Silky
 
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
         {
+            // create temp files for every selection
+            //foreach (string PCBFileName in PCB)
+
             // TODO implement temoprary operation execution
 
+            string tempFile = Path.GetTempPath() + "test.kicad_pcb";
+
+            File.Create(tempFile);
+
+
+            //MessageBox.Show(tempFile);
+
+            //File.Move(tempFile, Path.GetDirectoryName(tempFile) + "test.kicad_pcb");
+
+            // change the ending of the temporary file to .kicad_pcb
+            //tempFile = "C:\\Users\\Ari\\Desktop\\test.kicad_pcb"; //tempFile.Substring(0, tempFile.Length - 3) + "kicad_pcb";
+
+
+            Process.Start("explorer.exe", tempFile); // errors bc file doesnt exist. the only thing that is actually there is the tmp file name
+
+            /*
             List<string> fileNames = new List<string>();
 
             foreach (ListViewItem item in PCBListView.Items)
             {
                 Process.Start("explorer.exe", Core.FullPath(item.Content.ToString()));
-            }
+            }*/
         }
     }
 }
