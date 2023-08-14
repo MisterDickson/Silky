@@ -91,7 +91,9 @@ namespace Silky
 
         private void SaveAsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveAsDialog saveAsDialog = new SaveAsDialog();
+            saveAsDialog.Owner = this;
+            saveAsDialog.ShowDialog();
         }
 
         private void AddOperationButton_Click(object sender, RoutedEventArgs e)
@@ -195,33 +197,20 @@ namespace Silky
 
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
         {
-            // create temp files for every selection
-            //foreach (string PCBFileName in PCB)
+            List<string> fullTempFilePaths = new List<string>();
 
-            // TODO implement temoprary operation execution
-
-            string tempFile = Path.GetTempPath() + "test.kicad_pcb";
-
-            File.Create(tempFile);
-
-
-            //MessageBox.Show(tempFile);
-
-            //File.Move(tempFile, Path.GetDirectoryName(tempFile) + "test.kicad_pcb");
-
-            // change the ending of the temporary file to .kicad_pcb
-            //tempFile = "C:\\Users\\Ari\\Desktop\\test.kicad_pcb"; //tempFile.Substring(0, tempFile.Length - 3) + "kicad_pcb";
-
-
-            Process.Start("explorer.exe", tempFile); // errors bc file doesnt exist. the only thing that is actually there is the tmp file name
-
-            /*
-            List<string> fileNames = new List<string>();
-
-            foreach (ListViewItem item in PCBListView.Items)
+            foreach (ListViewItem PCBFileNameItem in PCBListView.SelectedItems)
             {
-                Process.Start("explorer.exe", Core.FullPath(item.Content.ToString()));
-            }*/
+                fullTempFilePaths.Add(Path.GetTempPath() + PCBFileNameItem.Content + ".kicad_pcb");
+                File.Copy(Core.FullPath(PCBFileNameItem.Content.ToString()), fullTempFilePaths.Last(), true);
+            }
+
+            Core.ExecuteOperationsOnFiles(fullTempFilePaths);
+
+            foreach (string file in fullTempFilePaths)
+            {
+                Process.Start("explorer.exe", file);
+            }
         }
     }
 }

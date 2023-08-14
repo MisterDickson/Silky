@@ -38,6 +38,12 @@ namespace Silky
             }
         }
 
+        public bool? ShowDialog(string message)
+        {
+            MessageTextBlock.Text = message;
+            return ShowDialog();
+        }
+
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
