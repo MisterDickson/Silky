@@ -26,7 +26,7 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Canvas HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Image x:Name="ErrorImage" Source="C:\Users\Ari\source\repos\Silky\Assets\Error.png" Width="150" Margin="10,30,10,10">
+            <Image x:Name="ErrorImage" Source="pack://application:,,,/Assets/ErrorIcon.png" Width="150" Margin="10,30,10,10">
                 <Image.RenderTransform>
                     <RotateTransform CenterX="100" CenterY="100" />
                 </Image.RenderTransform>

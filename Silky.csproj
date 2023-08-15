@@ -5,6 +5,26 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <PackageIcon>AppIcon.png</PackageIcon>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\ErrorIcon.png" />
+    <None Remove="Assets\KiCadIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\appicon.png" />
+    <Resource Include="Assets\ErrorIcon.png" />
+    <Resource Include="Assets\KiCadIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\AppIcon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

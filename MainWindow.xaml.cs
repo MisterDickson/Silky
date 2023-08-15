@@ -30,7 +30,7 @@ namespace Silky
             OpenFileDialog openPCBFileDialog = new OpenFileDialog();
             openPCBFileDialog.Filter = "KiCad PCB files (*.kicad_pcb)|*.kicad_pcb";
             openPCBFileDialog.Multiselect = true;
-
+            
             if (openPCBFileDialog.ShowDialog() != true) return;
 
             foreach (string fileName in openPCBFileDialog.FileNames)
@@ -55,7 +55,7 @@ namespace Silky
                 item.MouseDoubleClick += PCBName_DoubleClick;
                 item.ContextMenu = new ContextMenu();
                 Image icon = new Image();
-                icon.Source = new BitmapImage(new Uri(@"C:\Users\Ari\source\repos\Silky\Assets\KiCad-1.png"));
+                icon.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/KiCadIcon.png"));
                 MenuItem openPCBMenuItem = new MenuItem()
                 {
                     Header = "Open", DataContext = filePath, Icon = icon
