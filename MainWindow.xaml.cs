@@ -28,31 +28,29 @@ namespace Silky
         private void PCBAddButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openPCBFileDialog = new OpenFileDialog();
+            
             openPCBFileDialog.Filter = "KiCad PCB files (*.kicad_pcb)|*.kicad_pcb";
             openPCBFileDialog.Multiselect = true;
             
             if (openPCBFileDialog.ShowDialog() != true) return;
 
-            foreach (string fileName in openPCBFileDialog.FileNames)
+            foreach (string fullFilePath in openPCBFileDialog.FileNames)
             {
-                Core.AddFile(fileName);
-            }
+                if (Core.FullPaths().Contains(fullFilePath)) continue;
 
-            foreach (string PCBName in Core.PCBNames)
-            {
+                string pcbDisplayName = Core.AddFile(fullFilePath);
+                
                 ListViewItem item = new ListViewItem();
-                item.Content = PCBName;
+                item.Content = pcbDisplayName;
 
                 PCBListView.Items.Add(item);
-            }
 
-            foreach (ListViewItem item in PCBListView.Items)
-            {
                 string fileName = item.Content.ToString();
                 string filePath = Core.FullPath(fileName);
                 
                 item.ToolTip = filePath;
                 item.MouseDoubleClick += PCBName_DoubleClick;
+
                 item.ContextMenu = new ContextMenu();
                 Image icon = new Image();
                 icon.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/KiCadIcon.png"));
@@ -61,7 +59,9 @@ namespace Silky
                     Header = "Open", DataContext = filePath, Icon = icon
                 };
                 openPCBMenuItem.Click += PCBName_RightClickOpen;
+
                 openPCBMenuItem.Padding = new Thickness(5);
+
                 item.ContextMenu.Items.Add(openPCBMenuItem);
             }
 
@@ -222,7 +222,7 @@ namespace Silky
 
             foreach (ListViewItem PCBFileNameItem in PCBListView.Items)
             {
-                fullTempFilePaths.Add(Path.GetTempPath() + PCBFileNameItem.Content + ".kicad_pcb");
+                fullTempFilePaths.Add(Path.GetTempPath() + Core.FullPath(PCBFileNameItem.Content.ToString()).Replace(":", "").Replace("\\", "_")); // double wrap needed to avoid double name conflicts
                 File.Copy(Core.FullPath(PCBFileNameItem.Content.ToString()), fullTempFilePaths.Last(), true);
             }
 

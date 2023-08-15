@@ -30,29 +30,23 @@ namespace Silky
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveButton.Content = "loading...";
-
             EasterEgg ErrorMessage = new EasterEgg();
             ErrorMessage.Owner = this;
 
             List<string> savePaths = new List<string>();
-            string textBoxPath = SavePathTextBox.Text;
+            string textBoxPath = SavePathTextBox.Text.Replace("/", @"\" /*le windows*/).Replace(@"\\", @"\").Replace(":", "").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "");
 
             if (textBoxPath == "")
-            {
-                ErrorMessage.ShowDialog("Looks like the provided path is too short to make sense.");
-                SaveButton.Content = "Save";
-                return;
-            }
+            { ErrorMessage.ShowDialog("Looks like the provided path is too short to make sense."); return; }
+
+            if (textBoxPath.LastIndexOf(@"\") > textBoxPath.LastIndexOf("*") || !textBoxPath.Contains("*"))
+            { textBoxPath = textBoxPath + "*_edited"; }
 
             if (textBoxPath.Contains(":")) // absulute path
             {
                 if (!Directory.Exists(textBoxPath.Substring(0, textBoxPath.IndexOf(@"\")+1)))
-                {
-                    ErrorMessage.ShowDialog("How about a path that exists?");
-                    SaveButton.Content = "Save";
-                    return;
-                }
+                { ErrorMessage.ShowDialog("How about a path that exists?"); return; }
+
                 // creating every missing directory
                 string[] directories = textBoxPath.Split('\\').SkipLast(1).ToArray();
                 string path = "";
@@ -67,16 +61,19 @@ namespace Silky
 
                 foreach (string pcbName in Core.PCBNames)
                 {
-                    string savePath = SavePathTextBox.Text.Replace(@"\\",@"\").Replace("*", pcbName) + ".kicad_pcb";
+                    string savePath = textBoxPath.Replace("/", @"\").Replace(@"\\",@"\").Replace("*", pcbName) + ".kicad_pcb";
                     savePaths.Add(savePath);
                     File.Copy(Core.FullPath(pcbName), savePath, true);
                 }
             }
             else
             {
+                if (textBoxPath.ElementAt(0) != '\\')
+                { textBoxPath = @"\" + textBoxPath; }
+
                 foreach (string pcbPath in Core.FullPaths())
                 {
-                    string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
+                    string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace("/", @"\").Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
                     // creatung every missing directory
                     string[] directories = System.IO.Path.GetDirectoryName(textBoxPath.Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb").Split('\\');
                     string path = System.IO.Path.GetDirectoryName(pcbPath);
@@ -112,7 +109,6 @@ namespace Silky
                     alreadyOpenedFolders.Add(System.IO.Path.GetDirectoryName(file));
                 }
             }
-            SaveButton.Content = "Done";
             Close();
         }
 

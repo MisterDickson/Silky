@@ -213,7 +213,7 @@ namespace Silky
             get { return PCBFiles.Values.ToList(); }
         }
 
-        public static string FullPath(String fileName)
+        public static string? FullPath(String fileName)
         {
             foreach (KeyValuePair<string, string> entry in PCBFiles)
             {
@@ -227,9 +227,17 @@ namespace Silky
             return PCBFiles.Keys.ToList();
         }
 
-        public static void AddFile(String fullPath)
+        public static string AddFile(String fullPath) // returns the value which is used as a display name in the listview and to access the full path as needed
         {
-            PCBFiles[fullPath] = System.IO.Path.GetFileName(fullPath);
+            string val = Path.GetFileName(fullPath);
+
+            // the same file path should not enter this section twice
+            // file name = content, full path = key. equal file names with different paths mess up the indexing            
+            if (FullPath(val) != null)
+            {
+                val += " (" + Path.GetDirectoryName(fullPath) + ")";
+            }
+            return PCBFiles[fullPath] = val;
         }
 
         public static void Remove(String filePath)
