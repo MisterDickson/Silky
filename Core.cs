@@ -55,13 +55,16 @@ namespace Silky
                 using (var sw = new StreamWriter(tempFilePath))
                 {
                     string line;
+                    bool deepEnough = false; // The first couple of lines should not be touched
 
                     while ((line = sr.ReadLine()) != null)
                     {
                         string writeLine = line;
                         string layer = "layer \"";
+                        
+                        if (line.Contains("(footprint")) deepEnough = true;
 
-                        if (From != "Part Value" && From != "Part Reference") writeLine = line.Replace(From, To);
+                        if (From != "Part Value" && From != "Part Reference" && deepEnough) writeLine = line.Replace(From, To);
                         else if (From == "Part Value")
                         {
                             if (line.Contains("fp_text reference \"" + PartType))

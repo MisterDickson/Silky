@@ -124,7 +124,7 @@
                 </Grid>
 
                 <ListView x:Name="OperationListView" Grid.Row="1" SelectionMode="Extended" Margin="0,0,0,10"/>
-                <Button Content="Preview Selected Files" Grid.Column="0" Height="30" Style="{StaticResource AcceptButton}" x:Name="PreviewButton" Grid.Row="2" Click="PreviewButton_Click" />
+                <Button Content="Preview" Grid.Column="0" Height="30" Style="{StaticResource AcceptButton}" x:Name="PreviewButton" Grid.Row="2" Click="PreviewButton_Click" />
             </Grid>
         </Border>
         

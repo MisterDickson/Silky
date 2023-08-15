@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace Silky
 {
@@ -49,6 +51,14 @@ namespace Silky
 
                 item.ToolTip = filePath;
                 item.MouseDoubleClick += PCBName_DoubleClick;
+                item.ContextMenu = new ContextMenu();
+                MenuItem openPCBMenuItem = new MenuItem()
+                {
+                    Header = "Open", DataContext = filePath
+                };
+                openPCBMenuItem.Click += PCBName_RightClickOpen;
+
+                item.ContextMenu.Items.Add(openPCBMenuItem);
             }
 
             foreach (string layerName in Core.LayerNames())
@@ -75,6 +85,13 @@ namespace Silky
             string filePath = Core.FullPath(fileName);
 
             Process.Start("explorer.exe", "/select, \"" + filePath + "\"");
+        }
+
+        private void PCBName_RightClickOpen(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            string filePath = menuItem.DataContext as string;
+            Process.Start("explorer.exe", filePath);
         }
 
         private void PCBRemoveButton_Click(object sender, RoutedEventArgs e)
@@ -199,7 +216,7 @@ namespace Silky
         {
             List<string> fullTempFilePaths = new List<string>();
 
-            foreach (ListViewItem PCBFileNameItem in PCBListView.SelectedItems)
+            foreach (ListViewItem PCBFileNameItem in PCBListView.Items)
             {
                 fullTempFilePaths.Add(Path.GetTempPath() + PCBFileNameItem.Content + ".kicad_pcb");
                 File.Copy(Core.FullPath(PCBFileNameItem.Content.ToString()), fullTempFilePaths.Last(), true);

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Silky"
         mc:Ignorable="d"
         Title="Save ..." Height="200" Width="410"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
