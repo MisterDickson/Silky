@@ -24,6 +24,7 @@ namespace Silky
         public EasterEgg()
         {
             InitializeComponent();
+            OKButton.Focus();
             Storyboard? storyboard = FindResource("SpinStoryboard") as Storyboard;
             if (storyboard != null)
             {
@@ -47,6 +48,11 @@ namespace Silky
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape) Close();
         }
     }
 }

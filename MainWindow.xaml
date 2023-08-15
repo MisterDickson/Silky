@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Silky"
         mc:Ignorable="d"
         Title="Silky Pro" Height="550" Width="850"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -42,7 +43,7 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Content="Add" Grid.Column="0" Margin="0,0,5,0" Style="{StaticResource Button}" x:Name="PCBAddButton" Click="PCBAddButton_Click" />
+                <Button Content="Add" Grid.Column="0" Margin="0,0,5,0" Style="{StaticResource AcceptButton}" x:Name="PCBAddButton" Click="PCBAddButton_Click" />
                 <Button Content="Remove" Grid.Column="1" Margin="5,0,0,0" Style="{StaticResource Button}" x:Name="PCBRemoveButton" Click="PCBRemoveButton_Click" />
 
             </Grid>
@@ -124,7 +125,9 @@
                 </Grid>
 
                 <ListView x:Name="OperationListView" Grid.Row="1" SelectionMode="Extended" Margin="0,0,0,10"/>
-                <Button Content="Preview" Grid.Column="0" Height="30" Style="{StaticResource AcceptButton}" x:Name="PreviewButton" Grid.Row="2" Click="PreviewButton_Click" />
+                <Button Grid.Column="0" Height="30" Style="{StaticResource Button}" x:Name="PreviewButton" Grid.Row="2" Click="PreviewButton_Click">
+                    <AccessText Text="_Preview"/>
+                </Button>
             </Grid>
         </Border>
         
@@ -136,8 +139,12 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Content="Override All" Grid.Column="0" Margin="0,0,5,0" Style="{StaticResource Button}" x:Name="OverrideButton" Click="OverrideButton_Click" />
-                <Button Content="Save All As..." Grid.Column="1" Margin="5,0,0,0" Style="{StaticResource Button}" x:Name="SaveAsButton" Click="SaveAsButton_Click" />
+                <Button Grid.Column="0" Margin="0,0,5,0" Style="{StaticResource Button}" x:Name="OverrideButton" Click="OverrideButton_Click">
+                    <AccessText Text="_Override All"/>
+                </Button>
+                <Button Grid.Column="1" Margin="5,0,0,0" Style="{StaticResource Button}" x:Name="SaveAsButton" Click="SaveAsButton_Click">
+                    <AccessText Text="_Save All as..."/>
+                </Button>
 
             </Grid>
         </Border>

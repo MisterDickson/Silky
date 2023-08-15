@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Silky
 {
@@ -21,6 +22,7 @@ namespace Silky
             InitializeComponent();
             FromLayerListView.Items.Add("Part Value");
             FromLayerListView.Items.Add("Part Reference");
+            PCBAddButton.Focus();
         }
 
         private void PCBAddButton_Click(object sender, RoutedEventArgs e)
@@ -48,16 +50,18 @@ namespace Silky
             {
                 string fileName = item.Content.ToString();
                 string filePath = Core.FullPath(fileName);
-
+                
                 item.ToolTip = filePath;
                 item.MouseDoubleClick += PCBName_DoubleClick;
                 item.ContextMenu = new ContextMenu();
+                Image icon = new Image();
+                icon.Source = new BitmapImage(new Uri(@"C:\Users\Ari\source\repos\Silky\Assets\KiCad-1.png"));
                 MenuItem openPCBMenuItem = new MenuItem()
                 {
-                    Header = "Open", DataContext = filePath
+                    Header = "Open", DataContext = filePath, Icon = icon
                 };
                 openPCBMenuItem.Click += PCBName_RightClickOpen;
-
+                openPCBMenuItem.Padding = new Thickness(5);
                 item.ContextMenu.Items.Add(openPCBMenuItem);
             }
 
@@ -227,6 +231,14 @@ namespace Silky
             foreach (string file in fullTempFilePaths)
             {
                 Process.Start("explorer.exe", file);
+            }
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                PCBAddButton_Click(sender, e);
             }
         }
     }

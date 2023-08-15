@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Silky"
         mc:Ignorable="d"
         Title="Problem" Height="300" Width="600"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        KeyDown="Window_KeyDown">
     
     <Window.Resources>
         <Storyboard x:Key="SpinStoryboard">
@@ -39,7 +40,7 @@
                 Please purchase Silky Pro Plus to get this feature.<LineBreak/>
                 Or consider Silky Pro Premium for additional redo capabilities.
             </TextBlock>
-            <Button Content="OK" Margin="0,70,20,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Height="30" Style="{StaticResource Button}" x:Name="OKButton" Click="OKButton_Click" />
+            <Button Content="OK" Margin="0,70,20,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Height="30" Style="{StaticResource AcceptButton}" x:Name="OKButton" Click="OKButton_Click" />
         </StackPanel>
     </Grid>
 </Window>
