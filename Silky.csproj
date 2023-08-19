@@ -8,14 +8,21 @@
     <UseWPF>true</UseWPF>    
     <PackageIcon>AppIcon.png</PackageIcon>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\AppIcon.ico" />
     <None Remove="Assets\ErrorIcon.png" />
     <None Remove="Assets\KiCadIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\AppIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\AppIcon.ico" />
     <Resource Include="Assets\appicon.png" />
     <Resource Include="Assets\ErrorIcon.png" />
     <Resource Include="Assets\KiCadIcon.png" />

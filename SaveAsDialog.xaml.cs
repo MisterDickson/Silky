@@ -34,18 +34,22 @@ namespace Silky
             ErrorMessage.Owner = this;
 
             List<string> savePaths = new List<string>();
-            string textBoxPath = SavePathTextBox.Text.Replace("/", @"\" /*le windows*/).Replace(@"\\", @"\").Replace(":", "").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "");
+            string textBoxPath = SavePathTextBox.Text.Replace("/", @"\" /*le windows*/).Replace(@"\\", @"\").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "");
 
             if (textBoxPath == "")
-            { ErrorMessage.ShowDialog("Looks like the provided path is too short to make sense."); return; }
+            { ErrorMessage.ShowDialog("Looks like the provided path is too short to make sense."); SavePathTextBox.Focus(); return; }
 
+            // count the occurances of colons in textBoxPath
+            if(textBoxPath.Length - textBoxPath.Replace(":", "").Length > 1)
+            { ErrorMessage.ShowDialog("Looks like you have too many colons in your path."); SavePathTextBox.Focus(); return; }
+            
             if (textBoxPath.LastIndexOf(@"\") > textBoxPath.LastIndexOf("*") || !textBoxPath.Contains("*"))
             { textBoxPath = textBoxPath + "*_edited"; }
 
             if (textBoxPath.Contains(":")) // absulute path
             {
                 if (!Directory.Exists(textBoxPath.Substring(0, textBoxPath.IndexOf(@"\")+1)))
-                { ErrorMessage.ShowDialog("How about a path that exists?"); return; }
+                { ErrorMessage.ShowDialog("How about a path that exists?"); SavePathTextBox.Focus(); return; }
 
                 // creating every missing directory
                 string[] directories = textBoxPath.Split('\\').SkipLast(1).ToArray();
