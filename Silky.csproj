@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -8,17 +8,20 @@
     <UseWPF>true</UseWPF>    
     <PackageIcon>AppIcon.png</PackageIcon>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\PCBAppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Assets\AppIcon.ico" />
     <None Remove="Assets\ErrorIcon.png" />
     <None Remove="Assets\KiCadIcon.png" />
+    <None Remove="Assets\PCBAppIcon.ico" />
+    <None Remove="Assets\PCBAppIcon.png" />
+    <None Remove="Assets\PCBAppIcon_.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\AppIcon.ico" />
+    <Content Include="Assets\PCBAppIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +29,9 @@
     <Resource Include="Assets\appicon.png" />
     <Resource Include="Assets\ErrorIcon.png" />
     <Resource Include="Assets\KiCadIcon.png" />
+    <Resource Include="Assets\PCBAppIcon.ico" />
+    <Resource Include="Assets\PCBAppIcon.png" />
+    <Resource Include="Assets\PCBAppIcon_.png" />
   </ItemGroup>
 
   <ItemGroup>

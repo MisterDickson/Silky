@@ -7,10 +7,9 @@
         mc:Ignorable="d"
         Title="Silky Pro" Height="550" Width="850"
         WindowStartupLocation="CenterScreen"
-        KeyDown="Window_KeyDown" >
-    <!--Icon="pack://application:,,,/Assets/AppIcon.ico">-->
-    
-    
+        KeyDown="Window_KeyDown" Icon="pack://application:,,,/Assets/PCBAppIcon.png">
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
