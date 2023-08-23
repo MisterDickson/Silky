@@ -8,37 +8,23 @@
     <UseWPF>true</UseWPF>    
     <PackageIcon>AppIcon.png</PackageIcon>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <ApplicationIcon>Assets\PCBAppIcon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\AppIcon.ico" />
+    <None Remove="Assets\AppIcon.png" />
     <None Remove="Assets\ErrorIcon.png" />
     <None Remove="Assets\KiCadIcon.png" />
-    <None Remove="Assets\PCBAppIcon.ico" />
-    <None Remove="Assets\PCBAppIcon.png" />
-    <None Remove="Assets\PCBAppIcon_.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\PCBAppIcon.ico" />
+    <Content Include="Assets\AppIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\AppIcon.ico" />
-    <Resource Include="Assets\appicon.png" />
     <Resource Include="Assets\ErrorIcon.png" />
     <Resource Include="Assets\KiCadIcon.png" />
-    <Resource Include="Assets\PCBAppIcon.ico" />
-    <Resource Include="Assets\PCBAppIcon.png" />
-    <Resource Include="Assets\PCBAppIcon_.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Assets\AppIcon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <Resource Include="Assets\AppIcon.png" />
   </ItemGroup>
 
 </Project>
