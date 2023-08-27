@@ -45,8 +45,8 @@ namespace Silky
 
                 PCBListView.Items.Add(item);
 
-                string fileName = item.Content.ToString();
-                string filePath = Core.FullPath(fileName);
+                string? fileName = item.Content.ToString();
+                string? filePath = Core.FullPath(fileName!);
                 
                 item.ToolTip = filePath;
                 item.MouseDoubleClick += PCBName_DoubleClick;
@@ -85,17 +85,17 @@ namespace Silky
 
         private void PCBName_DoubleClick(object sender, RoutedEventArgs e)
         {
-            string fileName = ((ListViewItem)sender).Content.ToString();
-            string filePath = Core.FullPath(fileName);
+            string? fileName = ((ListViewItem)sender).Content.ToString();
+            string? filePath = Core.FullPath(fileName!);
 
             Process.Start("explorer.exe", "/select, \"" + filePath + "\"");
         }
 
         private void PCBName_RightClickOpen(object sender, RoutedEventArgs e)
         {
-            MenuItem menuItem = sender as MenuItem;
-            string filePath = menuItem.DataContext as string;
-            Process.Start("explorer.exe", filePath);
+            MenuItem? menuItem = sender as MenuItem;
+            string? filePath = menuItem!.DataContext as string;
+            Process.Start("explorer.exe", filePath!);
         }
 
         private void PCBRemoveButton_Click(object sender, RoutedEventArgs e)
@@ -222,8 +222,8 @@ namespace Silky
 
             foreach (ListViewItem PCBFileNameItem in PCBListView.Items)
             {
-                fullTempFilePaths.Add(Path.GetTempPath() + Core.FullPath(PCBFileNameItem.Content.ToString()).Replace(":", "").Replace("\\", "_")); // double wrap needed to avoid double name conflicts
-                File.Copy(Core.FullPath(PCBFileNameItem.Content.ToString()), fullTempFilePaths.Last(), true);
+                fullTempFilePaths.Add(Path.GetTempPath() + Core.FullPath(PCBFileNameItem?.Content?.ToString()!)!.Replace(":", "").Replace("\\", "_")); // double wrap needed to avoid double name conflicts
+                File.Copy(Core.FullPath(PCBFileNameItem?.Content?.ToString()!)!, fullTempFilePaths.Last(), true);
             }
 
             Core.ExecuteOperationsOnFiles(fullTempFilePaths);

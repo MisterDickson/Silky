@@ -57,7 +57,7 @@ namespace Silky
                     string line;
                     bool deepEnough = false; // The first couple of lines should not be touched
 
-                    while ((line = sr.ReadLine()) != null)
+                    while ((line = sr.ReadLine()!) != null)
                     {
                         string writeLine = line;
                         string layer = "layer \"";
@@ -80,7 +80,7 @@ namespace Silky
                                         break;
                                     }
                                     sw.WriteLine(line);
-                                } while ((line = sr.ReadLine()) != null);
+                                } while ((line = sr.ReadLine()!) != null);
                             }
                         }
                         else if (From == "Part Reference")

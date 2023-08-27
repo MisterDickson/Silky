@@ -67,7 +67,7 @@ namespace Silky
                 {
                     string savePath = textBoxPath.Replace("/", @"\").Replace(@"\\",@"\").Replace("*", pcbName) + ".kicad_pcb";
                     savePaths.Add(savePath);
-                    File.Copy(Core.FullPath(pcbName), savePath, true);
+                    File.Copy(Core.FullPath(pcbName)!, savePath, true);
                 }
             }
             else
@@ -79,8 +79,8 @@ namespace Silky
                 {
                     string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace("/", @"\").Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
                     // creatung every missing directory
-                    string[] directories = System.IO.Path.GetDirectoryName(textBoxPath.Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb").Split('\\');
-                    string path = System.IO.Path.GetDirectoryName(pcbPath);
+                    string[] directories = System.IO.Path.GetDirectoryName(textBoxPath.Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath))! + ".kicad_pcb")!.Split('\\');
+                    string path = System.IO.Path.GetDirectoryName(pcbPath)!;
                     foreach (string directory in directories)
                     {
                         path += directory + "\\";
@@ -107,10 +107,10 @@ namespace Silky
 
                 foreach (string file in savePaths)
                 {
-                    if (alreadyOpenedFolders.Contains(System.IO.Path.GetDirectoryName(file))) continue;
+                    if (alreadyOpenedFolders.Contains(System.IO.Path.GetDirectoryName(file)!)) continue;
 
                     Process.Start("explorer.exe", "/select, \"" + file + "\"");
-                    alreadyOpenedFolders.Add(System.IO.Path.GetDirectoryName(file));
+                    alreadyOpenedFolders.Add(System.IO.Path.GetDirectoryName(file)!);
                 }
             }
             Close();
