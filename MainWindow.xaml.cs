@@ -22,6 +22,7 @@ namespace Silky
             InitializeComponent();
             FromLayerListView.Items.Add("Part Value");
             FromLayerListView.Items.Add("Part Reference");
+            AddPCBs(InformationBridge.startupPCBs.ToArray());
             PCBAddButton.Focus();
         }
 
@@ -34,12 +35,17 @@ namespace Silky
             
             if (openPCBFileDialog.ShowDialog() != true) return;
 
-            foreach (string fullFilePath in openPCBFileDialog.FileNames)
+            AddPCBs(openPCBFileDialog.FileNames);
+        }
+
+        public void AddPCBs(string[] fileNames)
+        {
+            foreach (string fullFilePath in fileNames)
             {
                 if (Core.FullPaths().Contains(fullFilePath)) continue;
 
                 string pcbDisplayName = Core.AddFile(fullFilePath);
-                
+
                 ListViewItem item = new ListViewItem();
                 item.Content = pcbDisplayName;
 
@@ -47,7 +53,7 @@ namespace Silky
 
                 string? fileName = item.Content.ToString();
                 string? filePath = Core.FullPath(fileName!);
-                
+
                 item.ToolTip = filePath;
                 item.MouseDoubleClick += PCBName_DoubleClick;
 
@@ -56,7 +62,9 @@ namespace Silky
                 icon.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/KiCadIcon.png"));
                 MenuItem openPCBMenuItem = new MenuItem()
                 {
-                    Header = "Open", DataContext = filePath, Icon = icon
+                    Header = "Open",
+                    DataContext = filePath,
+                    Icon = icon
                 };
                 openPCBMenuItem.Click += PCBName_RightClickOpen;
 
@@ -82,7 +90,6 @@ namespace Silky
 
             PresetComboBox.SelectedIndex = 0; // "No Preset" is selected
         }
-
         private void PCBName_DoubleClick(object sender, RoutedEventArgs e)
         {
             string? fileName = ((ListViewItem)sender).Content.ToString();
