@@ -75,7 +75,7 @@ namespace Silky
                 if (textBoxPath.ElementAt(0) != '\\')
                 { textBoxPath = @"\" + textBoxPath; }
 
-                foreach (string pcbPath in Core.FullPaths())
+                foreach (string pcbPath in Core.FullPaths)
                 {
                     string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace("/", @"\").Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
                     // creatung every missing directory

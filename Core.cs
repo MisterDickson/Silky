@@ -139,71 +139,77 @@ namespace Silky
             operations.RemoveAt(index);
         }
 
-        public static List<String> LayerNames()
+        public static List<String> LayerNames
         {
-            List<String> LayerNames = new List<string>();
-
-            foreach (String filePath in PCBFiles.Keys.ToList())
+            get
             {
-                String[] lines = File.ReadAllLines(filePath);
+                List<String> LayerNames = new List<string>();
 
-                int ParentheseCount = 0;
-                int LineCount;
-                for(LineCount = 0; LineCount < lines.Count(); LineCount++)
+                foreach (String filePath in PCBFiles.Keys.ToList())
                 {
-                    if (lines[LineCount].Contains("(layers")) { ParentheseCount++; break; }
-                }
+                    String[] lines = File.ReadAllLines(filePath);
 
-                while (ParentheseCount > 0)
-                {
-                    LineCount++;
-                    if (lines[LineCount].Contains("(")) { ParentheseCount++; }
-                    if (lines[LineCount].Contains(")")) { ParentheseCount--; }
-                    if (lines[LineCount].Contains("F.Fab") && !LayerNames.Contains("F.Fab")) { LayerNames.Add("F.Fab"); }
-                    if (lines[LineCount].Contains("B.Fab") && !LayerNames.Contains("B.Fab")) { LayerNames.Add("B.Fab"); }
-                    if (lines[LineCount].Contains("F.CrtYd") && !LayerNames.Contains("F.CrtYd")) { LayerNames.Add("F.CrtYd"); }
-                    if (lines[LineCount].Contains("B.CrtYd") && !LayerNames.Contains("B.CrtYd")) { LayerNames.Add("B.CrtYd"); }
-                    if (lines[LineCount].Contains("F.SilkS") && !LayerNames.Contains("F.SilkS") ) { LayerNames.Add("F.SilkS"); }
-                    if (lines[LineCount].Contains("B.SilkS") && !LayerNames.Contains("B.SilkS")) { LayerNames.Add("B.SilkS"); }
-                    if (lines[LineCount].Contains("F.Mask") && !LayerNames.Contains("F.Mask")) { LayerNames.Add("F.Mask"); }
-                    if (lines[LineCount].Contains("B.Mask") && !LayerNames.Contains("B.Mask")) { LayerNames.Add("B.Mask"); }
-                    if (lines[LineCount].Contains("F.Cu") && !LayerNames.Contains("F.Cu")) { LayerNames.Add("F.Cu"); }
-                    if (lines[LineCount].Contains("In1.Cu") && !LayerNames.Contains("In1.Cu")) { LayerNames.Add("In1.Cu"); }
-                    if (lines[LineCount].Contains("In2.Cu") && !LayerNames.Contains("In2.Cu")) { LayerNames.Add("In2.Cu"); }
-                    if (lines[LineCount].Contains("B.Cu") && !LayerNames.Contains("B.Cu")) { LayerNames.Add("B.Cu"); }
-                    if (lines[LineCount].Contains("Edge.Cuts") && !LayerNames.Contains("Edge.Cuts")) { LayerNames.Add("Edge.Cuts"); }
-                    if (lines[LineCount].Contains("In3.Cu") && !LayerNames.Contains("In3.Cu")) { LayerNames.Add("In3.Cu"); }
-                    if (lines[LineCount].Contains("In4.Cu") && !LayerNames.Contains("In4.Cu")) { LayerNames.Add("In4.Cu"); }
-                    if (lines[LineCount].Contains("In5.Cu") && !LayerNames.Contains("In5.Cu")) { LayerNames.Add("In5.Cu"); }
-                    if (lines[LineCount].Contains("In6.Cu") && !LayerNames.Contains("In6.Cu")) { LayerNames.Add("In6.Cu"); }
-                    if (lines[LineCount].Contains("In7.Cu") && !LayerNames.Contains("In7.Cu")) { LayerNames.Add("In7.Cu"); }
-                    if (lines[LineCount].Contains("In8.Cu") && !LayerNames.Contains("In8.Cu")) { LayerNames.Add("In8.Cu"); }
-                    if (lines[LineCount].Contains("In9.Cu") && !LayerNames.Contains("In9.Cu")) { LayerNames.Add("In9.Cu"); }
-                    if (lines[LineCount].Contains("In10.Cu") && !LayerNames.Contains("In10.Cu")) { LayerNames.Add("In10.Cu"); }
-                    if (lines[LineCount].Contains("In11.Cu") && !LayerNames.Contains("In11.Cu")) { LayerNames.Add("In11.Cu"); }
-                }
+                    int ParentheseCount = 0;
+                    int LineCount;
+                    for (LineCount = 0; LineCount < lines.Count(); LineCount++)
+                    {
+                        if (lines[LineCount].Contains("(layers")) { ParentheseCount++; break; }
+                    }
 
+                    while (ParentheseCount > 0)
+                    {
+                        LineCount++;
+                        if (lines[LineCount].Contains("(")) { ParentheseCount++; }
+                        if (lines[LineCount].Contains(")")) { ParentheseCount--; }
+                        if (lines[LineCount].Contains("F.Fab") && !LayerNames.Contains("F.Fab")) { LayerNames.Add("F.Fab"); }
+                        if (lines[LineCount].Contains("B.Fab") && !LayerNames.Contains("B.Fab")) { LayerNames.Add("B.Fab"); }
+                        if (lines[LineCount].Contains("F.CrtYd") && !LayerNames.Contains("F.CrtYd")) { LayerNames.Add("F.CrtYd"); }
+                        if (lines[LineCount].Contains("B.CrtYd") && !LayerNames.Contains("B.CrtYd")) { LayerNames.Add("B.CrtYd"); }
+                        if (lines[LineCount].Contains("F.SilkS") && !LayerNames.Contains("F.SilkS")) { LayerNames.Add("F.SilkS"); }
+                        if (lines[LineCount].Contains("B.SilkS") && !LayerNames.Contains("B.SilkS")) { LayerNames.Add("B.SilkS"); }
+                        if (lines[LineCount].Contains("F.Mask") && !LayerNames.Contains("F.Mask")) { LayerNames.Add("F.Mask"); }
+                        if (lines[LineCount].Contains("B.Mask") && !LayerNames.Contains("B.Mask")) { LayerNames.Add("B.Mask"); }
+                        if (lines[LineCount].Contains("F.Cu") && !LayerNames.Contains("F.Cu")) { LayerNames.Add("F.Cu"); }
+                        if (lines[LineCount].Contains("In1.Cu") && !LayerNames.Contains("In1.Cu")) { LayerNames.Add("In1.Cu"); }
+                        if (lines[LineCount].Contains("In2.Cu") && !LayerNames.Contains("In2.Cu")) { LayerNames.Add("In2.Cu"); }
+                        if (lines[LineCount].Contains("B.Cu") && !LayerNames.Contains("B.Cu")) { LayerNames.Add("B.Cu"); }
+                        if (lines[LineCount].Contains("Edge.Cuts") && !LayerNames.Contains("Edge.Cuts")) { LayerNames.Add("Edge.Cuts"); }
+                        if (lines[LineCount].Contains("In3.Cu") && !LayerNames.Contains("In3.Cu")) { LayerNames.Add("In3.Cu"); }
+                        if (lines[LineCount].Contains("In4.Cu") && !LayerNames.Contains("In4.Cu")) { LayerNames.Add("In4.Cu"); }
+                        if (lines[LineCount].Contains("In5.Cu") && !LayerNames.Contains("In5.Cu")) { LayerNames.Add("In5.Cu"); }
+                        if (lines[LineCount].Contains("In6.Cu") && !LayerNames.Contains("In6.Cu")) { LayerNames.Add("In6.Cu"); }
+                        if (lines[LineCount].Contains("In7.Cu") && !LayerNames.Contains("In7.Cu")) { LayerNames.Add("In7.Cu"); }
+                        if (lines[LineCount].Contains("In8.Cu") && !LayerNames.Contains("In8.Cu")) { LayerNames.Add("In8.Cu"); }
+                        if (lines[LineCount].Contains("In9.Cu") && !LayerNames.Contains("In9.Cu")) { LayerNames.Add("In9.Cu"); }
+                        if (lines[LineCount].Contains("In10.Cu") && !LayerNames.Contains("In10.Cu")) { LayerNames.Add("In10.Cu"); }
+                        if (lines[LineCount].Contains("In11.Cu") && !LayerNames.Contains("In11.Cu")) { LayerNames.Add("In11.Cu"); }
+                    }
+
+                }
+                return LayerNames;
             }
-            return LayerNames;
         }
 
-        public static List<char> PartAcronyms()
+        public static List<char> PartAcronyms
         {
-            List<char> PartAcronyms = new List<char>();
-            foreach (String filePath in PCBFiles.Keys.ToList())
+            get
             {
-                String[] lines = File.ReadAllLines(filePath);
-
-                foreach (String line in lines)
+                List<char> PartAcronyms = new List<char>();
+                foreach (String filePath in PCBFiles.Keys.ToList())
                 {
-                    if (line.Contains("(fp_text reference \""))
+                    String[] lines = File.ReadAllLines(filePath);
+
+                    foreach (String line in lines)
                     {
-                        char PartAcronym = line.Split("(fp_text reference \"")[1][0];
-                        if (!PartAcronyms.Contains(PartAcronym)) { PartAcronyms.Add(PartAcronym); }
+                        if (line.Contains("(fp_text reference \""))
+                        {
+                            char PartAcronym = line.Split("(fp_text reference \"")[1][0];
+                            if (!PartAcronyms.Contains(PartAcronym)) { PartAcronyms.Add(PartAcronym); }
+                        }
                     }
                 }
+                return PartAcronyms;
             }
-            return PartAcronyms;
         }
 
         private static Dictionary<string, string> PCBFiles = new Dictionary<string, string>(); // key = fullPath, value = fileName
@@ -222,9 +228,9 @@ namespace Silky
             return null;
         }
 
-        public static List<string> FullPaths()
+        public static List<string> FullPaths
         {
-            return PCBFiles.Keys.ToList();
+            get { return PCBFiles.Keys.ToList(); }
         }
 
         public static string AddFile(String fullPath) // returns the value which is used as a display name in the listview and to access the full path as needed

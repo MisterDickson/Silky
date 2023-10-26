@@ -42,7 +42,7 @@ namespace Silky
         {
             foreach (string fullFilePath in fileNames)
             {
-                if (Core.FullPaths().Contains(fullFilePath)) continue;
+                if (Core.FullPaths.Contains(fullFilePath)) continue;
 
                 string pcbDisplayName = Core.AddFile(fullFilePath);
 
@@ -73,7 +73,7 @@ namespace Silky
                 item.ContextMenu.Items.Add(openPCBMenuItem);
             }
 
-            foreach (string layerName in Core.LayerNames())
+            foreach (string layerName in Core.LayerNames)
             {
                 if (FromLayerListView.Items.Contains(layerName)) continue;
                 FromLayerListView.Items.Add(layerName);
@@ -82,7 +82,7 @@ namespace Silky
                 ToLayerListView.Items.Add(layerName);
             }
 
-            foreach (char partAcronym in Core.PartAcronyms())
+            foreach (char partAcronym in Core.PartAcronyms)
             {
                 if (ApplyToPartListView.Items.Contains(partAcronym)) continue;
                 ApplyToPartListView.Items.Add(partAcronym);
@@ -114,7 +114,7 @@ namespace Silky
 
         private void OverrideButton_Click(object sender, RoutedEventArgs e)
         {
-            Core.ExecuteOperationsOnFiles(Core.FullPaths());
+            Core.ExecuteOperationsOnFiles(Core.FullPaths);
         }
 
         private void SaveAsButton_Click(object sender, RoutedEventArgs e)
