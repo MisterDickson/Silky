@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Silky (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Silky (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
