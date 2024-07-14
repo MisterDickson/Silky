@@ -30,7 +30,7 @@
 
       <TextBlock Grid.Row="0" Grid.Column="0" Text="Circuit Board Files" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"/>
 
-      <ListView Grid.Row="1" Grid.Column="0" SelectionMode="Extended" VerticalAlignment="Top" x:Name="PCBListView" />
+      <ListView Grid.Row="1" Grid.Column="0" SelectionMode="Extended" VerticalAlignment="Top" x:Name="PCBListView" SelectionChanged="PCBListView_SelectionChanged"/>
 
       <Grid Grid.Row="2" Grid.Column="0" ColumnSpacing="5" VerticalAlignment="Center">
 
@@ -78,8 +78,8 @@
 
       <DropDownButton Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="P">
          <StackPanel Orientation="Horizontal" Spacing="6">
-            <SymbolIcon Symbol="Bullets" />
-            <TextBlock Text="Preset Options" />
+            <FontIcon x:Name="PresetFontIcon" Glyph="&#xE8FD;"/>
+            <TextBlock x:Name="PresetTextBlock" Text="Preset Options" />
          </StackPanel>
 
 
@@ -93,7 +93,7 @@
 
                <MenuFlyoutItem Text="Blank PCB" ToolTipService.Placement="Right" ToolTipService.ToolTip="All content of *.SilkS is moved to F.Fab" x:Name="BlankPCBPreset" Click="BlankPCBPreset_Click">
                   <MenuFlyoutItem.Icon>
-                     <FontIcon Glyph="&#xE7FB;"/>
+                     <FontIcon Glyph="&#xE7C4;"/>
                   </MenuFlyoutItem.Icon>
                </MenuFlyoutItem>
 
@@ -144,7 +144,7 @@
             </Grid>
          </Grid>
 
-         <ListView Grid.Row="1" SelectionMode="Extended" VerticalAlignment="Top" x:Name="OperationsListView"/>
+         <ListView Grid.Row="1" SelectionMode="Extended" VerticalAlignment="Top" x:Name="OperationsListView" SelectionChanged="OperationsListView_SelectionChanged"/>
 
 
          <Button Grid.Row="2" HorizontalAlignment="Stretch" AccessKey="V" VerticalAlignment="Bottom" x:Name="PreviewButton" Click="PreviewButton_Click">

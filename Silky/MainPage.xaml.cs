@@ -22,6 +22,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,11 +35,35 @@ namespace Silky
    public sealed partial class MainPage : Page
    {
       SilkyCore Core;
+      ListView LastFocussedPCBorOperationsListView; // To target the Delete Key action
+
       public MainPage()
       {
-         this.InitializeComponent();
-         this.NavigationCacheMode = NavigationCacheMode.Enabled;
+         InitializeComponent();
+         NavigationCacheMode = NavigationCacheMode.Enabled;
          Core = new SilkyCore(PCBListView);
+         LastFocussedPCBorOperationsListView = PCBListView;
+
+         LoadCommandLineArgPCBs();
+      }
+
+      public async void LoadCommandLineArgPCBs()
+      {
+         int len = Environment.GetCommandLineArgs().Length;
+         if (len < 2) return;
+
+         string[] args = Environment.GetCommandLineArgs();
+
+         for (int i = 1; i < len; i++)
+         {
+            if (!args[i].EndsWith(".kicad_pcb")) continue;
+
+            StorageFile file = await StorageFile.GetFileFromPathAsync(args[i]);
+            if (file is null) continue;
+
+            AddUniquePCBFile(file);
+         }
+         DisplayLayersAndParts();
       }
 
       private void SaveAllAsButton_Click(object sender, RoutedEventArgs e)
@@ -48,8 +73,14 @@ namespace Silky
 
       private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
       {
+         if (e.Key == VirtualKey.Delete)
+         {
+            if (LastFocussedPCBorOperationsListView == PCBListView)
+               RemovePCBFileButton_Click(sender, e);
+            else if (LastFocussedPCBorOperationsListView == OperationsListView)
+               RemoveOperationButton_Click(sender, e);
+         }
       }
-
 
       private async void LoadPCBFileButton_Click(object sender, RoutedEventArgs e)
       {
@@ -136,6 +167,8 @@ namespace Silky
       }
       private void RemovePCBFileButton_Click(object sender, RoutedEventArgs e)
       {
+         if (PCBListView.SelectedItems.Count < 1) return;
+
          List<int> selectedItems = new List<int>();
          int i = 0;
          foreach (ListViewItem listViewItem in PCBListView.Items)
@@ -153,36 +186,52 @@ namespace Silky
          OperationsListView.ItemsSource = null;
          OperationsListView.ItemsSource = Core.OperationNames;
          DisplayLayersAndParts();
+
+         if (PCBListView.Items.Count < 1)
+         {
+            PresetTextBlock.Text = "Preset Options";
+            PresetFontIcon.Glyph = "\uE8FD";
+         }
       }
 
       private void AddOperationButton_Click(object sender, RoutedEventArgs e)
       {
-         foreach (String fromLayer in FromLayerListView.SelectedItems)
+         bool somethingChanged = false;
+         foreach (string fromLayer in FromLayerListView.SelectedItems)
          {
-            foreach (String toLayer in ToLayerListView.SelectedItems)
+            foreach (string toLayer in ToLayerListView.SelectedItems)
             {
                if (ApplyToPartListView.IsEnabled == false)
                {
-                  Core.AddUniqueOperation(fromLayer, toLayer, (char)0);
+                  somethingChanged = Core.AddUniqueOperation(fromLayer, toLayer, (char)0);
                   continue;
                }
 
                foreach (char partAcronym in ApplyToPartListView.SelectedItems)
                {
-                  Core.AddUniqueOperation(fromLayer, toLayer, partAcronym);
+                  somethingChanged = Core.AddUniqueOperation(fromLayer, toLayer, partAcronym);
                }
             }
          }
          OperationsListView.ItemsSource = Core.OperationNames;
+
+         if (somethingChanged && PresetTextBlock.Text is not "Preset Options" && !PresetTextBlock.Text.Contains("Modifications"))
+            PresetTextBlock.Text += " with Modifications";
+
       }
 
       private void RemoveOperationButton_Click(object sender, RoutedEventArgs e)
       {
-         foreach (String ListEntry in OperationsListView.SelectedItems)
+         if (OperationsListView.SelectedItems.Count < 1) return;
+
+         foreach (string ListEntry in OperationsListView.SelectedItems)
             Core.RemoveOperation(ListEntry);
 
          OperationsListView.ItemsSource = null;
          OperationsListView.ItemsSource = Core.OperationNames;
+
+         if (PresetTextBlock.Text is not "Preset Options" && !PresetTextBlock.Text.Contains("Modifications"))
+            PresetTextBlock.Text += " with Modifications";
       }
       private void PreviewButton_Click(object sender, RoutedEventArgs e)
       {
@@ -223,7 +272,7 @@ namespace Silky
       {
          if (PCBListView.Items.Count < 1) return;
 
-         foreach (String ListEntree in OperationsListView.Items)
+         foreach (string ListEntree in OperationsListView.Items)
             Core.RemoveOperation(ListEntree);
 
          OperationsListView.ItemsSource = null;
@@ -246,13 +295,16 @@ namespace Silky
          ToLayerListView.SelectedIndex = ToLayerFFabIndex;
 
          AddOperationButton_Click(this, e);
+
+         PresetTextBlock.Text = "Hand soldering preset";
+         PresetFontIcon.Glyph = "\uE929";
       }
 
       private void BlankPCBPreset_Click(object sender, RoutedEventArgs e)
       {
          if (PCBListView.Items.Count < 1) return;
 
-         foreach (String ListEntree in OperationsListView.Items)
+         foreach (string ListEntree in OperationsListView.Items)
             Core.RemoveOperation(ListEntree);
 
          OperationsListView.ItemsSource = null;
@@ -275,13 +327,16 @@ namespace Silky
          ToLayerListView.SelectedItems.Add("F.Fab");
 
          AddOperationButton_Click(this, e);
+
+         PresetTextBlock.Text = "Blank PCB preset";
+         PresetFontIcon.Glyph = "\uE7C4";
       }
 
       private void HTL10ValuesPreset_Click(object sender, RoutedEventArgs e)
       {
          if (PCBListView.Items.Count < 1) return;
 
-         foreach (String ListEntry in OperationsListView.Items)
+         foreach (string ListEntry in OperationsListView.Items)
             Core.RemoveOperation(ListEntry);
 
          OperationsListView.ItemsSource = null;
@@ -314,13 +369,16 @@ namespace Silky
          ApplyToPartListView.SelectAll();
 
          AddOperationButton_Click(this, e);
+
+         PresetTextBlock.Text = "HTL 10 Values preset";
+         PresetFontIcon.Glyph = "\uEEA3";
       }
 
       private void HTL10ReferencePreset_Click(object sender, RoutedEventArgs e)
       {
          if (PCBListView.Items.Count < 1) return;
 
-         foreach (String ListEntry in OperationsListView.Items)
+         foreach (string ListEntry in OperationsListView.Items)
             Core.RemoveOperation(ListEntry);
 
          OperationsListView.ItemsSource = null;
@@ -353,6 +411,9 @@ namespace Silky
          ApplyToPartListView.SelectAll();
 
          AddOperationButton_Click(this, e);
+
+         PresetTextBlock.Text = "HTL 10 References preset";
+         PresetFontIcon.Glyph = "\uE8B3";
       }
 
       private async void Page_Drop(object sender, DragEventArgs e)
@@ -388,5 +449,17 @@ namespace Silky
             e.AcceptedOperation = DataPackageOperation.None;
          }
       }
+
+      private void PCBListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+      {
+         LastFocussedPCBorOperationsListView = PCBListView;
+      }
+
+      private void OperationsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+      {
+         LastFocussedPCBorOperationsListView = OperationsListView;
+      }
+
+
    }
 }

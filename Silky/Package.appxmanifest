@@ -43,6 +43,18 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
         <uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge"/>
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="openwithsilky">
+            <uap:SupportedFileTypes>
+              <uap:FileType ContentType="kicad_pcb/kicad_pcb">.kicad_pcb</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>Edit with Silky</uap:DisplayName>
+            <uap:InfoTip>Edit Layer Properties</uap:InfoTip>
+            <uap:EditFlags OpenIsSafe="true"/>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 

@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\AppX</LayoutDir>
-    <RegisteredManifestChecksum>09DD1C67003F6E85F09C14E2D4F0F76BB9F54589E3A06818357EA73FE8FF3E8A</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>62ECDEAAC381A099F0F00328DCBC61E7E5EFF66EC92273343DDE337930D080C9</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>2588d3ca-2065-4736-9987-caf0caef0942_1.0.0.0_x64__16b9q6tb0aqbm</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>2588d3ca-2065-4736-9987-caf0caef0942_16b9q6tb0aqbm!App</RegisteredUserModeAppID>
     <RegisteredPackageID>2588d3ca-2065-4736-9987-caf0caef0942</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-07-14T15:31:18.063</Modified>
+      <Modified>2024-07-14T19:03:11.686</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-07-14T15:20:37.302</Modified>
+      <Modified>2024-07-14T17:45:26.750</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.runtimeconfig.json">
       <PackagePath>Silky.runtimeconfig.json</PackagePath>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.dll">
       <PackagePath>Silky.dll</PackagePath>
-      <Modified>2024-07-14T15:31:17.812</Modified>
+      <Modified>2024-07-14T19:03:11.219</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\apphost.exe">
       <PackagePath>Silky.exe</PackagePath>
-      <Modified>2024-07-14T15:31:17.827</Modified>
+      <Modified>2024-07-14T19:03:11.246</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.deps.json">
       <PackagePath>Silky.deps.json</PackagePath>

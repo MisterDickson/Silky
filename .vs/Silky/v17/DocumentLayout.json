@@ -3,44 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\Adrian\\source\\repos\\Silky\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\savedialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\savedialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\silkycore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\silkycore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\savedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\savedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\intermediate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\intermediate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\intermediate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\intermediate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\mainwindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\silky.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\silky.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\savedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\savedialog.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\savedialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\savedialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|c:\\users\\adrian\\source\\repos\\silky\\silky\\silkycore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A412CC6-4BEF-4458-A5C9-C73A19AEC191}|Silky\\Silky.csproj|solutionrelative:silky\\silkycore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,20 +66,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\App.xaml.cs",
               "RelativeDocumentMoniker": "Silky\\App.xaml.cs",
               "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\App.xaml.cs",
               "RelativeToolTip": "Silky\\App.xaml.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAQwDsAAAAvAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-14T13:53:44.173Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\App.xaml",
               "RelativeDocumentMoniker": "Silky\\App.xaml",
@@ -84,13 +92,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Silky\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainWindow.xaml.cs",
               "RelativeToolTip": "Silky\\MainWindow.xaml.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACEAAABDAAAA",
+              "ViewState": "AQIAABcAAAAAAAAAAAAiwCEAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-14T13:53:29.6Z",
               "EditorCaption": ""
@@ -103,20 +111,20 @@
               "RelativeDocumentMoniker": "Silky\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainWindow.xaml",
               "RelativeToolTip": "Silky\\MainWindow.xaml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAARAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-07-14T13:47:53.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "SaveDialog.xaml",
               "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\SaveDialog.xaml",
               "RelativeDocumentMoniker": "Silky\\SaveDialog.xaml",
               "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\SaveDialog.xaml",
               "RelativeToolTip": "Silky\\SaveDialog.xaml",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAAABQAAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-07-14T10:14:12.068Z",
               "EditorCaption": ""
@@ -124,64 +132,90 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainPage.xaml",
-              "RelativeDocumentMoniker": "Silky\\MainPage.xaml",
-              "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainPage.xaml",
-              "RelativeToolTip": "Silky\\MainPage.xaml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-14T08:37:02.069Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Intermediate.cs",
-              "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\Intermediate.cs",
-              "RelativeDocumentMoniker": "Silky\\Intermediate.cs",
-              "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\Intermediate.cs",
-              "RelativeToolTip": "Silky\\Intermediate.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAADMAAAAPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-14T08:27:00.686Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SilkyCore.cs",
-              "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\SilkyCore.cs",
-              "RelativeDocumentMoniker": "Silky\\SilkyCore.cs",
-              "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\SilkyCore.cs",
-              "RelativeToolTip": "Silky\\SilkyCore.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAD4v4AAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-14T08:26:32.154Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "MainPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "Silky\\MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainPage.xaml.cs",
               "RelativeToolTip": "Silky\\MainPage.xaml.cs",
-              "ViewState": "AQIAAMwAAAAAAAAAAAAmwN0AAAAmAAAA",
+              "ViewState": "AQIAACYAAAAAAAAAAAAQwDUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-14T07:38:22.087Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Silky",
+              "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\Silky.csproj",
+              "RelativeDocumentMoniker": "Silky\\Silky.csproj",
+              "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\Silky.csproj",
+              "RelativeToolTip": "Silky\\Silky.csproj",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-14T17:34:18.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "app.manifest",
+              "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\app.manifest",
+              "RelativeDocumentMoniker": "Silky\\app.manifest",
+              "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\app.manifest",
+              "RelativeToolTip": "Silky\\app.manifest",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001203|",
+              "WhenOpened": "2024-07-14T17:35:00.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainPage.xaml",
+              "RelativeDocumentMoniker": "Silky\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\MainPage.xaml",
+              "RelativeToolTip": "Silky\\MainPage.xaml",
+              "ViewState": "AQIAADwAAAAAAAAAAAAkwFAAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-14T08:37:02.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Intermediate.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\Intermediate.cs",
+              "RelativeDocumentMoniker": "Silky\\Intermediate.cs",
+              "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\Intermediate.cs",
+              "RelativeToolTip": "Silky\\Intermediate.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAwwA8AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T08:27:00.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SilkyCore.cs",
+              "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\SilkyCore.cs",
+              "RelativeDocumentMoniker": "Silky\\SilkyCore.cs",
+              "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\SilkyCore.cs",
+              "RelativeToolTip": "Silky\\SilkyCore.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAIA3wIoAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T08:26:32.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "SaveDialog.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\SaveDialog.xaml.cs",
               "RelativeDocumentMoniker": "Silky\\SaveDialog.xaml.cs",
               "ToolTip": "C:\\Users\\Adrian\\source\\repos\\Silky\\Silky\\SaveDialog.xaml.cs",
               "RelativeToolTip": "Silky\\SaveDialog.xaml.cs",
-              "ViewState": "AQIAAFgAAAAAAAAAAAAhwCsAAAAAAAAA",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAhwGwAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-13T21:50:21.502Z",
               "EditorCaption": ""

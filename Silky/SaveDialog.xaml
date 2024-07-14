@@ -7,8 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-   <Grid HorizontalAlignment="Center" VerticalAlignment="Top" RowSpacing="25" BorderThickness="90" Width="1500" Margin="0 30 0 0">
+   <ScrollView HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+   <Grid HorizontalAlignment="Center" VerticalAlignment="Top" RowSpacing="25" BorderThickness="90" Margin="0 50 0 0">
 
 
       <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
 
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="*"/>
-         <ColumnDefinition Width="2*"/>
+         <ColumnDefinition Width="4*"/>
          <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
 
@@ -67,5 +67,5 @@
       </ListView>
 
    </Grid>
-
+   </ScrollView>
 </Page>

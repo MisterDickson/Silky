@@ -15,7 +15,6 @@ namespace Silky
       public static Window MainWindow { get; set; }
       public static List<string> filePaths;
 
-
       public static ListViewItem PrepareListViewItem(string displayName, string filePath, Exception e = null)
       {
          ListViewItem item = new ListViewItem();
