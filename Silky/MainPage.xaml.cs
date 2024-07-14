@@ -16,6 +16,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using Windows.ApplicationModel.Calls.Background;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -26,298 +28,365 @@ using Windows.Storage.Pickers;
 
 namespace Silky
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
-    {
-        public MainPage()
-        {
-            this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+   /// <summary>
+   /// An empty page that can be used on its own or navigated to within a Frame.
+   /// </summary>
+   public sealed partial class MainPage : Page
+   {
+      SilkyCore Core;
+      public MainPage()
+      {
+         this.InitializeComponent();
+         this.NavigationCacheMode = NavigationCacheMode.Enabled;
+         Core = new SilkyCore(PCBListView);
+      }
+
+      private void SaveAllAsButton_Click(object sender, RoutedEventArgs e)
+      {
+         Frame.Navigate(typeof(SaveDialog), Core, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+      }
+
+      private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
+      {
+      }
+
+
+      private async void LoadPCBFileButton_Click(object sender, RoutedEventArgs e)
+      {
+         var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
+         var window = Intermediate.MainWindow;
+         var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+         WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
+
+         openPicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+         openPicker.FileTypeFilter.Add(".kicad_pcb");
+
+         IReadOnlyList<StorageFile> files = await openPicker.PickMultipleFilesAsync();
+
+         if (files.Count < 1) return;
+
+         foreach (StorageFile file in files)
+         {
+            AddUniquePCBFile(file);
+         }
+
+         DisplayLayersAndParts();
+      }
+
+      /// <summary>
+      /// Adds a ListViewItem with DataContext to PCBListView.
+      /// The Content is the File Name, the DataContext is the Full Path.
+      /// If the very File is already added to PCBListView nothing happens.
+      /// If there is an equally named File with a different path to load,
+      /// its full path is added in paranthesis next to its Name to avoid confusion.
+      /// </summary>
+      /// <param name="file"></param>
+      public void AddUniquePCBFile(StorageFile file)
+      {
+         string contains = ContainsPCBFile(file.Name);
+         if (contains is null)
+         {
+            PCBListView.Items.Add(Intermediate.PrepareListViewItem(file.Name, file.Path));
+            return;
+         }
+
+         if (contains != file.Path) // Files with the same name but different paths
+            PCBListView.Items.Add(Intermediate.PrepareListViewItem(file.Name + " (" + file.Path + ")", file.Path));
+      }
+
+      public void DisplayLayersAndParts()
+      {
+         if (PCBListView.Items.Count < 1) return;
+
+         if (!FromLayerListView.Items.Contains("Part Value"))
             FromLayerListView.Items.Add("Part Value");
-            FromLayerListView.Items.Add("Part Reference");
-        }
-
-        private void SaveAllAsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(SaveDialog), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
-        }
-
-        private void Page_KeyDown(object sender, KeyRoutedEventArgs e)
-        {
-        }
-
-
-        private async void LoadPCBFileButton_Click(object sender, RoutedEventArgs e)
-        {
-            var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
-            var window = Intermediate.MainWindow;
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
-            WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
-
-            openPicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            openPicker.FileTypeFilter.Add(".kicad_pcb");
-
-            IReadOnlyList<StorageFile> files = await openPicker.PickMultipleFilesAsync();
-            if (files.Count > 0)
-            {
-                foreach (StorageFile file in files)
-                {
-                    Intermediate.filePaths.Add(file.Path);
-                }
-
-                AddPCBs(Intermediate.filePaths);
-            }
-        }
-
-        public void AddPCBs(List<string> fileNames)
-        {
-            foreach (string fullFilePath in fileNames)
-            {
-                if (Core.FullPaths.Contains(fullFilePath)) continue;
-
-                string pcbDisplayName = Core.AddFile(fullFilePath);
-
-                PCBListView.Items.Add(Intermediate.PrepareListViewItem(pcbDisplayName, fullFilePath));
-            }
-
-            foreach (string layerName in Core.LayerNames)
-            {
-                if (FromLayerListView.Items.Contains(layerName)) continue;
-                FromLayerListView.Items.Add(layerName);
-
-                if (ToLayerListView.Items.Contains(layerName)) continue;
-                ToLayerListView.Items.Add(layerName);
-            }
-
-            foreach (char partAcronym in Core.PartAcronyms)
-            {
-                if (ApplyToPartListView.Items.Contains(partAcronym)) continue;
-                ApplyToPartListView.Items.Add(partAcronym);
-            }
-        }
-
-        private void RemovePCBFileButton_Click(object sender, RoutedEventArgs e)
-        {
-            foreach(ListViewItem selectedItem in PCBListView.SelectedItems)
-            {
-                Intermediate.filePaths.Remove(selectedItem.DataContext.ToString());
-            }
-
-            Core.operations.Clear();
-            Core.OperationNames.Clear();
-            Core.LayerNames.Clear();
-            Core.PartAcronyms.Clear();
-            Core.PCBFiles.Clear();
-            Core.PCBNames.Clear();
-            Core.FullPaths.Clear();
-            FromLayerListView.Items.Clear();
-            ToLayerListView.Items.Clear();
-            ApplyToPartListView.Items.Clear();
-            OperationsListView.ItemsSource = null;
-            OperationsListView.Items.Clear();
-            PCBListView.Items.Clear();
-
-            FromLayerListView.Items.Add("Part Value");
+         if (!FromLayerListView.Items.Contains("Part Reference"))
             FromLayerListView.Items.Add("Part Reference");
 
-            AddPCBs(Intermediate.filePaths);
-        }
+         foreach (string layerName in Core.LayerNames)
+         {
+            if (FromLayerListView.Items.Contains(layerName)) continue;
+            FromLayerListView.Items.Add(layerName);
 
-        private void AddOperationButton_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (String fromLayer in FromLayerListView.SelectedItems)
+            if (ToLayerListView.Items.Contains(layerName)) continue;
+            ToLayerListView.Items.Add(layerName);
+         }
+
+         foreach (char partAcronym in Core.PartAcronyms)
+         {
+            if (ApplyToPartListView.Items.Contains(partAcronym)) continue;
+            ApplyToPartListView.Items.Add(partAcronym);
+         }
+      }
+
+      /// <summary>
+      /// Check if File is already loaded with consideration of Same Name files with different Paths
+      /// </summary>
+      /// <param name="fileName"></param>
+      /// <returns>null if there is no occurance whatsoever. if there is an occurance the full path is returned,
+      /// so the caller can check if it is a different path or a exact duplicate</returns>
+      public string ContainsPCBFile(string fileName)
+      {
+         foreach(ListViewItem listViewItem in PCBListView.Items)
+         {
+            if (listViewItem.Content.ToString() == fileName)
+               return listViewItem.DataContext.ToString();
+         }
+         return null;
+      }
+      private void RemovePCBFileButton_Click(object sender, RoutedEventArgs e)
+      {
+         List<int> selectedItems = new List<int>();
+         int i = 0;
+         foreach (ListViewItem listViewItem in PCBListView.Items)
+         {
+            if (listViewItem.IsSelected)
+               selectedItems.Add(i);
+            i++;
+         }
+         for (i = selectedItems.Count - 1; i >= 0; i--) PCBListView.Items.RemoveAt(selectedItems[i]);
+
+         FromLayerListView.Items.Clear();
+         ToLayerListView.Items.Clear();
+         ApplyToPartListView.Items.Clear();
+         Core.operations.Clear();
+         OperationsListView.ItemsSource = null;
+         OperationsListView.ItemsSource = Core.OperationNames;
+         DisplayLayersAndParts();
+      }
+
+      private void AddOperationButton_Click(object sender, RoutedEventArgs e)
+      {
+         foreach (String fromLayer in FromLayerListView.SelectedItems)
+         {
+            foreach (String toLayer in ToLayerListView.SelectedItems)
             {
-                foreach (String toLayer in ToLayerListView.SelectedItems)
-                {
-                    if (ApplyToPartListView.IsEnabled == false)
-                    {
-                        Core.AddUniqueOperation(fromLayer, toLayer, (char)0);
-                        continue;
-                    }
+               if (ApplyToPartListView.IsEnabled == false)
+               {
+                  Core.AddUniqueOperation(fromLayer, toLayer, (char)0);
+                  continue;
+               }
 
-                    foreach (char partAcronym in ApplyToPartListView.SelectedItems)
-                    {
-                        Core.AddUniqueOperation(fromLayer, toLayer, partAcronym);
-                    }
-                }
+               foreach (char partAcronym in ApplyToPartListView.SelectedItems)
+               {
+                  Core.AddUniqueOperation(fromLayer, toLayer, partAcronym);
+               }
             }
-            OperationsListView.ItemsSource = Core.OperationNames;
-        }
+         }
+         OperationsListView.ItemsSource = Core.OperationNames;
+      }
 
-        private void RemoveOperationButton_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (String ListEntree in OperationsListView.SelectedItems)
-                Core.RemoveOperation(ListEntree);
+      private void RemoveOperationButton_Click(object sender, RoutedEventArgs e)
+      {
+         foreach (String ListEntry in OperationsListView.SelectedItems)
+            Core.RemoveOperation(ListEntry);
 
-            OperationsListView.ItemsSource = null;
-            OperationsListView.ItemsSource = Core.OperationNames;
-        }
-        private void PreviewButton_Click(object sender, RoutedEventArgs e)
-        {
-            List<string> fullTempFilePaths = new List<string>();
+         OperationsListView.ItemsSource = null;
+         OperationsListView.ItemsSource = Core.OperationNames;
+      }
+      private void PreviewButton_Click(object sender, RoutedEventArgs e)
+      {
+         List<string> fullTempFilePaths = new List<string>();
 
-            foreach (ListViewItem PCBFileNameItem in PCBListView.Items)
+         foreach (ListViewItem PCBListViewEntry in PCBListView.Items)
+         {
+            fullTempFilePaths.Add(Path.GetTempPath() + PCBListViewEntry.DataContext.ToString().Replace(":", "").Replace("\\", "_")); // double wrap needed to avoid double name conflicts
+            File.Copy(PCBListViewEntry.DataContext.ToString(), fullTempFilePaths.Last(), true);
+         }
+
+         Core.ExecuteOperationsOnFiles(fullTempFilePaths);
+
+         foreach (string file in fullTempFilePaths)
+         {
+            Process.Start("explorer.exe", file);
+         }
+      }
+
+      private void OverrideAllButton_Click(object sender, RoutedEventArgs e)
+      {
+         List<string> allPaths = new List<string>();
+
+         foreach (ListViewItem PCBListViewEntry in PCBListView.Items)
+            allPaths.Add(PCBListViewEntry.DataContext.ToString());
+
+         Core.ExecuteOperationsOnFiles(allPaths);
+      }
+
+      private void FromLayerListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+      {
+         // If the user selects anything other than "Part Value" or "Part Reference" then it does not apply to parts and
+         // therefore the "Apply to Part" listview is disabled
+         ApplyToPartListView.IsEnabled = FromLayerListView.SelectedIndex < 2;
+      }
+
+      private void HandSolderingPreset_Click(object sender, RoutedEventArgs e)
+      {
+         if (PCBListView.Items.Count < 1) return;
+
+         foreach (String ListEntree in OperationsListView.Items)
+            Core.RemoveOperation(ListEntree);
+
+         OperationsListView.ItemsSource = null;
+         OperationsListView.ItemsSource = Core.OperationNames;
+
+         int ToLayerFSilkSIndex = ToLayerListView.Items.IndexOf("F.SilkS");
+         int ToLayerFFabIndex = ToLayerListView.Items.IndexOf("F.Fab");
+
+         if (ToLayerFSilkSIndex < 0) ToLayerListView.Items.Add("F.SilkS");
+         if (ToLayerFFabIndex < 0) ToLayerListView.Items.Add("F.Fab");
+
+         ApplyToPartListView.SelectAll();
+
+         FromLayerListView.SelectedIndex = 0;
+         ToLayerListView.SelectedIndex = ToLayerFSilkSIndex;
+
+         AddOperationButton_Click(this, e);
+
+         FromLayerListView.SelectedIndex = 1;
+         ToLayerListView.SelectedIndex = ToLayerFFabIndex;
+
+         AddOperationButton_Click(this, e);
+      }
+
+      private void BlankPCBPreset_Click(object sender, RoutedEventArgs e)
+      {
+         if (PCBListView.Items.Count < 1) return;
+
+         foreach (String ListEntree in OperationsListView.Items)
+            Core.RemoveOperation(ListEntree);
+
+         OperationsListView.ItemsSource = null;
+         OperationsListView.ItemsSource = Core.OperationNames;
+
+         int FromLayerFSilkSIndex = FromLayerListView.Items.IndexOf("F.SilkS");
+         int FromLayerBSilkSIndex = FromLayerListView.Items.IndexOf("B.SilkS");
+         int ToLayerFFabIndex = ToLayerListView.Items.IndexOf("F.Fab");
+
+         if (FromLayerFSilkSIndex < 0) FromLayerListView.Items.Add("F.SilkS");
+         if (FromLayerBSilkSIndex < 0) FromLayerListView.Items.Add("B.SilkS");
+         if (ToLayerFFabIndex < 0) ToLayerListView.Items.Add("F.Fab");
+
+         FromLayerListView.SelectedItems.Clear();
+         ToLayerListView.SelectedItems.Clear();
+
+         FromLayerListView.SelectedItems.Add("F.SilkS");
+         FromLayerListView.SelectedItems.Add("B.SilkS");
+
+         ToLayerListView.SelectedItems.Add("F.Fab");
+
+         AddOperationButton_Click(this, e);
+      }
+
+      private void HTL10ValuesPreset_Click(object sender, RoutedEventArgs e)
+      {
+         if (PCBListView.Items.Count < 1) return;
+
+         foreach (String ListEntry in OperationsListView.Items)
+            Core.RemoveOperation(ListEntry);
+
+         OperationsListView.ItemsSource = null;
+         OperationsListView.ItemsSource = Core.OperationNames;
+
+         int FromLayerFSilkSIndex = FromLayerListView.Items.IndexOf("F.SilkS");
+         int FromLayerBSilkSIndex = FromLayerListView.Items.IndexOf("B.SilkS");
+         int ToLayerFFabIndex = ToLayerListView.Items.IndexOf("F.Fab");
+
+         if (FromLayerFSilkSIndex < 0) FromLayerListView.Items.Add("F.SilkS");
+         if (FromLayerBSilkSIndex < 0) FromLayerListView.Items.Add("B.SilkS");
+         if (ToLayerFFabIndex < 0) ToLayerListView.Items.Add("F.Fab");
+
+         FromLayerListView.SelectedItems.Clear();
+         ToLayerListView.SelectedItems.Clear();
+
+         FromLayerListView.SelectedItems.Add("F.SilkS");
+         FromLayerListView.SelectedItems.Add("B.SilkS");
+
+         ToLayerListView.SelectedItems.Add("F.Fab");
+
+         AddOperationButton_Click(this, e);
+
+         if (ToLayerListView.Items.IndexOf("F.Cu") < 0)
+            ToLayerListView.Items.Add("F.Cu");
+
+         FromLayerListView.SelectedIndex = 0;
+         ToLayerListView.SelectedItems.Clear();
+         ToLayerListView.SelectedItems.Add("F.Cu");
+         ApplyToPartListView.SelectAll();
+
+         AddOperationButton_Click(this, e);
+      }
+
+      private void HTL10ReferencePreset_Click(object sender, RoutedEventArgs e)
+      {
+         if (PCBListView.Items.Count < 1) return;
+
+         foreach (String ListEntry in OperationsListView.Items)
+            Core.RemoveOperation(ListEntry);
+
+         OperationsListView.ItemsSource = null;
+         OperationsListView.ItemsSource = Core.OperationNames;
+
+         int FromLayerFSilkSIndex = FromLayerListView.Items.IndexOf("F.SilkS");
+         int FromLayerBSilkSIndex = FromLayerListView.Items.IndexOf("B.SilkS");
+         int ToLayerFFabIndex = ToLayerListView.Items.IndexOf("F.Fab");
+
+         if (FromLayerFSilkSIndex < 0) FromLayerListView.Items.Add("F.SilkS");
+         if (FromLayerBSilkSIndex < 0) FromLayerListView.Items.Add("B.SilkS");
+         if (ToLayerFFabIndex < 0) ToLayerListView.Items.Add("F.Fab");
+
+         FromLayerListView.SelectedItems.Clear();
+         ToLayerListView.SelectedItems.Clear();
+
+         FromLayerListView.SelectedItems.Add("F.SilkS");
+         FromLayerListView.SelectedItems.Add("B.SilkS");
+
+         ToLayerListView.SelectedItems.Add("F.Fab");
+
+         AddOperationButton_Click(this, e);
+
+         if (ToLayerListView.Items.IndexOf("F.Cu") < 0)
+            ToLayerListView.Items.Add("F.Cu");
+
+         FromLayerListView.SelectedIndex = 1;
+         ToLayerListView.SelectedItems.Clear();
+         ToLayerListView.SelectedItems.Add("F.Cu");
+         ApplyToPartListView.SelectAll();
+
+         AddOperationButton_Click(this, e);
+      }
+
+      private async void Page_Drop(object sender, DragEventArgs e)
+      {
+         if (e.DataView.Contains(StandardDataFormats.StorageItems))
+         {
+            var items = await e.DataView.GetStorageItemsAsync();
+
+            foreach (var item in items) 
             {
-                fullTempFilePaths.Add(Path.GetTempPath() + Core.FullPath(PCBFileNameItem?.Content?.ToString()!)!.Replace(":", "").Replace("\\", "_")); // double wrap needed to avoid double name conflicts
-                File.Copy(Core.FullPath(PCBFileNameItem?.Content?.ToString()!)!, fullTempFilePaths.Last(), true);
+               StorageFile storageFile = item as StorageFile;
+               if (storageFile is not null && storageFile.FileType == ".kicad_pcb")
+                  AddUniquePCBFile(storageFile);
             }
 
-            Core.ExecuteOperationsOnFiles(fullTempFilePaths);
+            DisplayLayersAndParts();
+         }
+      }
 
-            foreach (string file in fullTempFilePaths)
-            {
-                Process.Start("explorer.exe", file);
-            }
-        }
-
-        private void OverrideAllButton_Click(object sender, RoutedEventArgs e)
-        {
-            Core.ExecuteOperationsOnFiles(Core.FullPaths);
-        }
-
-        private void FromLayerListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // If the user selects anything other than "Part Value" or "Part Reference" then it does not apply to parts and
-            // therefore the "Apply to Part" listview is disabled
-            ApplyToPartListView.IsEnabled = FromLayerListView.SelectedIndex < 2;
-        }
-
-        private void HandSolderingPreset_Click(object sender, RoutedEventArgs e)
-        {
-            if (PCBListView.Items.Count < 1) return;
-
-            foreach (String ListEntree in OperationsListView.Items)
-                Core.RemoveOperation(ListEntree);
-
-            OperationsListView.ItemsSource = null;
-            OperationsListView.ItemsSource = Core.OperationNames;
-
-            int ToLayerFSilkSIndex = ToLayerListView.Items.IndexOf("F.SilkS");
-            int ToLayerFFabIndex = ToLayerListView.Items.IndexOf("F.Fab");
-
-            if (ToLayerFSilkSIndex < 0) ToLayerListView.Items.Add("F.SilkS");
-            if (ToLayerFFabIndex < 0) ToLayerListView.Items.Add("F.Fab");
-
-            ApplyToPartListView.SelectAll();
-
-            FromLayerListView.SelectedIndex = 0;
-            ToLayerListView.SelectedIndex = ToLayerFSilkSIndex;
-
-            AddOperationButton_Click(this, e);
-
-            FromLayerListView.SelectedIndex = 1;
-            ToLayerListView.SelectedIndex = ToLayerFFabIndex;
-
-            AddOperationButton_Click(this, e);
-        }
-
-        private void BlankPCBPreset_Click(object sender, RoutedEventArgs e)
-        {
-            if (PCBListView.Items.Count < 1) return;
-
-            foreach (String ListEntree in OperationsListView.Items)
-                Core.RemoveOperation(ListEntree);
-
-            OperationsListView.ItemsSource = null;
-            OperationsListView.ItemsSource = Core.OperationNames;
-
-            int FromLayerFSilkSIndex = FromLayerListView.Items.IndexOf("F.SilkS");
-            int FromLayerBSilkSIndex = FromLayerListView.Items.IndexOf("B.SilkS");
-            int ToLayerFFabIndex = ToLayerListView.Items.IndexOf("F.Fab");
-
-            if (FromLayerFSilkSIndex < 0) FromLayerListView.Items.Add("F.SilkS");
-            if (FromLayerBSilkSIndex < 0) FromLayerListView.Items.Add("B.SilkS");
-            if (ToLayerFFabIndex < 0) ToLayerListView.Items.Add("F.Fab");
-
-            FromLayerListView.SelectedItems.Clear();
-            ToLayerListView.SelectedItems.Clear();
-
-            FromLayerListView.SelectedItems.Add("F.SilkS");
-            FromLayerListView.SelectedItems.Add("B.SilkS");
-
-            ToLayerListView.SelectedItems.Add("F.Fab");
-
-            AddOperationButton_Click(this, e);
-        }
-
-        private void HTL10ValuesPreset_Click(object sender, RoutedEventArgs e)
-        {
-            if (PCBListView.Items.Count < 1) return;
-
-            foreach (String ListEntree in OperationsListView.Items)
-                Core.RemoveOperation(ListEntree);
-
-            OperationsListView.ItemsSource = null;
-            OperationsListView.ItemsSource = Core.OperationNames;
-
-            int FromLayerFSilkSIndex = FromLayerListView.Items.IndexOf("F.SilkS");
-            int FromLayerBSilkSIndex = FromLayerListView.Items.IndexOf("B.SilkS");
-            int ToLayerFFabIndex = ToLayerListView.Items.IndexOf("F.Fab");
-
-            if (FromLayerFSilkSIndex < 0) FromLayerListView.Items.Add("F.SilkS");
-            if (FromLayerBSilkSIndex < 0) FromLayerListView.Items.Add("B.SilkS");
-            if (ToLayerFFabIndex < 0) ToLayerListView.Items.Add("F.Fab");
-
-            FromLayerListView.SelectedItems.Clear();
-            ToLayerListView.SelectedItems.Clear();
-
-            FromLayerListView.SelectedItems.Add("F.SilkS");
-            FromLayerListView.SelectedItems.Add("B.SilkS");
-
-            ToLayerListView.SelectedItems.Add("F.Fab");
-
-            AddOperationButton_Click(this, e);
-
-            if (ToLayerListView.Items.IndexOf("F.Cu") < 0)
-                ToLayerListView.Items.Add("F.Cu");
-
-            FromLayerListView.SelectedIndex = 0;
-            ToLayerListView.SelectedItems.Clear();
-            ToLayerListView.SelectedItems.Add("F.Cu");
-            ApplyToPartListView.SelectAll();
-
-            AddOperationButton_Click(this, e);
-        }
-
-        private void HTL10ReferencePreset_Click(object sender, RoutedEventArgs e)
-        {
-            if (PCBListView.Items.Count < 1) return;
-
-            foreach (String ListEntree in OperationsListView.Items)
-                Core.RemoveOperation(ListEntree);
-
-            OperationsListView.ItemsSource = null;
-            OperationsListView.ItemsSource = Core.OperationNames;
-
-            int FromLayerFSilkSIndex = FromLayerListView.Items.IndexOf("F.SilkS");
-            int FromLayerBSilkSIndex = FromLayerListView.Items.IndexOf("B.SilkS");
-            int ToLayerFFabIndex = ToLayerListView.Items.IndexOf("F.Fab");
-
-            if (FromLayerFSilkSIndex < 0) FromLayerListView.Items.Add("F.SilkS");
-            if (FromLayerBSilkSIndex < 0) FromLayerListView.Items.Add("B.SilkS");
-            if (ToLayerFFabIndex < 0) ToLayerListView.Items.Add("F.Fab");
-
-            FromLayerListView.SelectedItems.Clear();
-            ToLayerListView.SelectedItems.Clear();
-
-            FromLayerListView.SelectedItems.Add("F.SilkS");
-            FromLayerListView.SelectedItems.Add("B.SilkS");
-
-            ToLayerListView.SelectedItems.Add("F.Fab");
-
-            AddOperationButton_Click(this, e);
-
-            if (ToLayerListView.Items.IndexOf("F.Cu") < 0)
-                ToLayerListView.Items.Add("F.Cu");
-
-            FromLayerListView.SelectedIndex = 1;
-            ToLayerListView.SelectedItems.Clear();
-            ToLayerListView.SelectedItems.Add("F.Cu");
-            ApplyToPartListView.SelectAll();
-
-            AddOperationButton_Click(this, e);
-        }
-    }
+      private void Grid_DragEnter(object sender, DragEventArgs e)
+      {
+         e.AcceptedOperation = DataPackageOperation.Copy;
+         if (e.DataView.Contains(StandardDataFormats.StorageItems))
+         {
+            e.DragUIOverride.Caption = "Drop to load the file";
+            e.DragUIOverride.IsContentVisible = true;
+            e.DragUIOverride.IsCaptionVisible = true;
+         }
+         else
+         {
+            e.DragUIOverride.Caption = "Invalid file type";
+            e.DragUIOverride.IsCaptionVisible = true;
+            e.AcceptedOperation = DataPackageOperation.None;
+         }
+      }
+   }
 }

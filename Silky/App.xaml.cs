@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -57,7 +58,7 @@ namespace Silky
             m_window.Activate();
 
             Intermediate.MainWindow = m_window;
-        }
+      }
 
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {

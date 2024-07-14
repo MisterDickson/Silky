@@ -26,131 +26,177 @@ using Windows.UI.Shell;
 
 namespace Silky
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class SaveDialog : Page
-    {
-        public SaveDialog()
-        {
-            this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
-        }
+   /// <summary>
+   /// An empty page that can be used on its own or navigated to within a Frame.
+   /// </summary>
+   public sealed partial class SaveDialog : Page
+   {
+      public SaveDialog()
+      {
+         this.InitializeComponent();
+         this.NavigationCacheMode = NavigationCacheMode.Enabled;
+      }
 
-        private void BackToMainFromSaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(Frame.CanGoBack) Frame.GoBack(new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
-        }
+      public void AdjustUIGrammar()
+      {
+         OpenFilesAfterSave.Content = "Open Files after saving";
+         OpenFoldersAfterSave.Content = "Open Folders after saving";
 
-        private void SaveCopiesButton_Click(object sender, RoutedEventArgs e)
-        {
-            List<string> savePaths = new List<string>();
-            string textBoxPath = PathTextBox.Text.Replace("/", @"\" /*le windows*/).Replace(@"\\", @"\").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "");
+         if (Core is null) return;
 
-            if (textBoxPath == "") textBoxPath = PathTextBox.PlaceholderText;
+         if (Core.Source.Items.Count == 1)
+         {
+            OpenFilesAfterSave.Content = "Open File after saving";
+            OpenFoldersAfterSave.Content = "Open Folder after saving";
+         }
+         if (Core.Source.Items.Count > 1)
+         {
+            OpenFilesAfterSave.Content = "Open Files after saving";
 
-            if (textBoxPath.LastIndexOf(@"\") > textBoxPath.LastIndexOf("*") || !textBoxPath.Contains("*"))
-            { textBoxPath = textBoxPath + "*_edited"; }
+            ListViewItem firstEntry = Core.Source.Items[0] as ListViewItem;
+            string firstDirectory = Path.GetDirectoryName(firstEntry.DataContext.ToString());
 
-            if (textBoxPath.Contains(":")) // absulute path
+            for (int i = 1; i < Core.Source.Items.Count; i++)
             {
-                // creating every missing directory
-                string[] directories = textBoxPath.Split('\\').SkipLast(1).ToArray();
-                string path = "";
-                foreach (string directory in directories)
-                {
-                    path += directory + "\\";
-                    if (!Directory.Exists(path))
-                    {
-                        try
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-                        catch (Exception ex)
-                        {
-                            SavedFileLogListView.Items.Add(Intermediate.PrepareListViewItem("Something went terribly wrong", "", ex));
-                        }
-                    }
-                }
-
-                foreach (string pcbName in Core.PCBNames)
-                {
-                    string savePath = textBoxPath.Replace("/", @"\").Replace(@"\\", @"\").Replace("*", pcbName) + ".kicad_pcb";
-                    savePaths.Add(savePath);
-
-                    try
-                    {
-                        File.Copy(Core.FullPath(pcbName)!, savePath, true);
-                        ListViewItem successfulLog = Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath);
-
-                        successfulLog.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 223, 246, 221));
-
-                        SavedFileLogListView.Items.Add(successfulLog);
-                    }
-                    catch (Exception ex)
-                    {
-                        SavedFileLogListView.Items.Add(Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath, ex));
-                    }
-                }
-            }
-            else
-            {
-                if (textBoxPath.ElementAt(0) != '\\')
-                { textBoxPath = @"\" + textBoxPath; }
-
-                foreach (string pcbPath in Core.FullPaths)
-                {
-                    string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace("/", @"\").Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
-                    // creatung every missing directory
-                    string[] directories = System.IO.Path.GetDirectoryName(textBoxPath.Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath))! + ".kicad_pcb")!.Split('\\');
-                    string path = System.IO.Path.GetDirectoryName(pcbPath)!;
-                    foreach (string directory in directories)
-                    {
-                        path += directory + "\\";
-                        if (!Directory.Exists(path))
-                        {
-                            Directory.CreateDirectory(path);
-                        }
-                    }
-                    savePaths.Add(savePath);
-
-                    try
-                    {
-                        File.Copy(pcbPath, savePath, true);
-                        ListViewItem successfulLog = Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath);
-
-                        successfulLog.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 223, 246, 221));
-
-                        SavedFileLogListView.Items.Add(successfulLog);
-                    }
-                    catch (Exception ex)
-                    {
-                        SavedFileLogListView.Items.Add(Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath, ex));
-                    }
-
-                }
+               ListViewItem otherEntry = Core.Source.Items[i] as ListViewItem;
+               string otherDirectory = Path.GetDirectoryName(otherEntry.DataContext.ToString());
+               if (firstDirectory != otherDirectory)
+               {
+                  OpenFoldersAfterSave.Content = "Open Folders after saving";
+                  return;
+               }
             }
 
-            Core.ExecuteOperationsOnFiles(savePaths);
+            OpenFoldersAfterSave.Content = "Open Folder after saving";
+         }
+      }
 
-            if (OpenFilesAfterSave.IsChecked == true)
+      SilkyCore Core;
+      protected override void OnNavigatedTo(NavigationEventArgs e)
+      {
+         Core = e.Parameter as SilkyCore;
+         base.OnNavigatedTo(e);
+
+         AdjustUIGrammar();
+      }
+
+      private void BackToMainFromSaveButton_Click(object sender, RoutedEventArgs e)
+      {
+         if (Frame.CanGoBack) Frame.GoBack(new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+      }
+
+      private void SaveCopiesButton_Click(object sender, RoutedEventArgs e)
+      {
+         if (Core.operations.Count < 1) return;
+
+         List<string> savePaths = new List<string>();
+         string textBoxPath = PathTextBox.Text.Replace("/", @"\" /*le windows*/).Replace(@"\\", @"\").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "");
+
+         if (textBoxPath == "") textBoxPath = PathTextBox.PlaceholderText;
+
+         if (textBoxPath.LastIndexOf(@"\") > textBoxPath.LastIndexOf("*") || !textBoxPath.Contains("*"))
+         { textBoxPath = textBoxPath + "*_edited"; }
+
+         if (textBoxPath.Contains(":")) // absulute path
+         {
+            // creating every missing directory
+            string[] directories = textBoxPath.Split('\\').SkipLast(1).ToArray();
+            string path = "";
+            foreach (string directory in directories)
             {
-                foreach (string file in savePaths) Process.Start("explorer.exe", file);
+               path += directory + "\\";
+               if (!Directory.Exists(path))
+               {
+                  try
+                  {
+                     Directory.CreateDirectory(path);
+                  }
+                  catch (Exception ex)
+                  {
+                     SavedFileLogListView.Items.Add(Intermediate.PrepareListViewItem("Something went terribly wrong", "", ex));
+                  }
+               }
             }
 
-            if (OpenFoldersAfterSave.IsChecked == true)
+            foreach (ListViewItem PCBListViewEntry in Core.Source.Items)
             {
-                List<string> alreadyOpenedFolders = new List<string>();
+               string savePath = textBoxPath.Replace("/", @"\").Replace(@"\\", @"\").Replace("*", PCBListViewEntry.Content.ToString()) + ".kicad_pcb";
+               savePaths.Add(savePath);
 
-                foreach (string file in savePaths)
-                {
-                    if (alreadyOpenedFolders.Contains(System.IO.Path.GetDirectoryName(file)!)) continue;
+               try
+               {
+                  File.Copy(PCBListViewEntry.DataContext.ToString(), savePath, true);
+                  ListViewItem successfulLog = Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath);
 
-                    Process.Start("explorer.exe", "/select, \"" + file + "\"");
-                    alreadyOpenedFolders.Add(System.IO.Path.GetDirectoryName(file)!);
-                }
+                  successfulLog.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 223, 246, 221));
+
+                  SavedFileLogListView.Items.Add(successfulLog);
+               }
+               catch (Exception ex)
+               {
+                  SavedFileLogListView.Items.Add(Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath, ex));
+               }
             }
-            SavedFileLogListView.ScrollIntoView(SavedFileLogListView.Items.ElementAt(SavedFileLogListView.Items.Count - 1));
-        }
-    }
+         }
+         else
+         {
+            if (textBoxPath.ElementAt(0) != '\\')
+            { textBoxPath = @"\" + textBoxPath; }
+
+            foreach (ListViewItem PCBListViewEntry in Core.Source.Items)
+            {
+               string pcbPath = PCBListViewEntry.DataContext.ToString();
+               string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace("/", @"\").Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
+               // creatung every missing directory
+               string[] directories = System.IO.Path.GetDirectoryName(textBoxPath.Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath))! + ".kicad_pcb")!.Split('\\');
+               string path = System.IO.Path.GetDirectoryName(pcbPath)!;
+               foreach (string directory in directories)
+               {
+                  path += directory + "\\";
+                  if (!Directory.Exists(path))
+                  {
+                     Directory.CreateDirectory(path);
+                  }
+               }
+               savePaths.Add(savePath);
+
+               try
+               {
+                  File.Copy(pcbPath, savePath, true);
+                  ListViewItem successfulLog = Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath);
+
+                  successfulLog.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 223, 246, 221));
+
+                  SavedFileLogListView.Items.Add(successfulLog);
+               }
+               catch (Exception ex)
+               {
+                  SavedFileLogListView.Items.Add(Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath, ex));
+               }
+
+            }
+         }
+
+         Core.ExecuteOperationsOnFiles(savePaths);
+
+         if (OpenFilesAfterSave.IsChecked == true)
+         {
+            foreach (string file in savePaths) Process.Start("explorer.exe", file);
+         }
+
+         if (OpenFoldersAfterSave.IsChecked == true)
+         {
+            List<string> alreadyOpenedFolders = new List<string>();
+
+            foreach (string file in savePaths)
+            {
+               if (alreadyOpenedFolders.Contains(System.IO.Path.GetDirectoryName(file)!)) continue;
+
+               Process.Start("explorer.exe", "/select, \"" + file + "\"");
+               alreadyOpenedFolders.Add(System.IO.Path.GetDirectoryName(file)!);
+            }
+         }
+         SavedFileLogListView.ScrollIntoView(SavedFileLogListView.Items.ElementAt(SavedFileLogListView.Items.Count - 1));
+      }
+   }
 }

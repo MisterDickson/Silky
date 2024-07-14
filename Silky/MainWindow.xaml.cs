@@ -21,16 +21,17 @@ using Windows.UI.Core;
 
 namespace Silky
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            this.InitializeComponent();
-            AppWindow.SetIcon("Assets\\Silky.ico");
-            ExtendsContentIntoTitleBar = true;
-        }
-    }
+   /// <summary>
+   /// An empty window that can be used on its own or navigated to within a Frame.
+   /// </summary>
+   public sealed partial class MainWindow : Window
+   {
+      public MainWindow()
+      {
+         this.InitializeComponent();
+         AppWindow.SetIcon("Assets\\Silky.ico");
+         ExtendsContentIntoTitleBar = true;
+         AppWindow.Resize(new Windows.Graphics.SizeInt32(1100, 840));
+      }
+   }
 }

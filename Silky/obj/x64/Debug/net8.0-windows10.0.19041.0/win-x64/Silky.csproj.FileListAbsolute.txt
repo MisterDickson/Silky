@@ -201,7 +201,6 @@ C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.
 C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\hostfxr.dll
 C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\hostpolicy.dll
 C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\mscordaccore.dll
-C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\mscordaccore_amd64_amd64_8.0.624.26715.dll
 C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\mscordbi.dll
 C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\mscorrc.dll
 C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\msquic.dll
@@ -254,3 +253,5 @@ C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.19041.
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\SaveDialog.xaml
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\MainPage.xbf
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\SaveDialog.xbf
+C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\mscordaccore_amd64_amd64_8.0.724.31311.dll
+C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Silky.sourcelink.json
