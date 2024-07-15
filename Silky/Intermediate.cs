@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Microsoft.UI.Xaml.Input;
 
 namespace Silky
 {
    internal static class Intermediate
    {
       public static Window MainWindow { get; set; }
-      public static List<string> filePaths;
 
       public static ListViewItem PrepareListViewItem(string displayName, string filePath, Exception e = null)
       {

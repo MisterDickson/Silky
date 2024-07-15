@@ -36,7 +36,6 @@ namespace Silky
          this.InitializeComponent();
          this.NavigationCacheMode = NavigationCacheMode.Enabled;
       }
-
       public void AdjustUIGrammar()
       {
          OpenFilesAfterSave.Content = "Open Files after saving";
@@ -197,6 +196,11 @@ namespace Silky
             }
          }
          SavedFileLogListView.ScrollIntoView(SavedFileLogListView.Items.ElementAt(SavedFileLogListView.Items.Count - 1));
+      }
+
+      private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
+      {
+         if (e.GetCurrentPoint(this).Properties.IsXButton1Pressed) BackToMainFromSaveButton_Click(sender, e);
       }
    }
 }

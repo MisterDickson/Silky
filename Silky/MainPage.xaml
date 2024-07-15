@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="Silky.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Silky"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-   KeyDown="Page_KeyDown">
+   x:Class="Silky.MainPage"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:local="using:Silky"
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   mc:Ignorable="d"
+   KeyDown="Page_KeyDown"
+   PointerPressed="Page_PointerPressed">
 
-   <Grid ColumnSpacing="10" RowSpacing="5" BorderThickness="10"
+
+   <Grid ColumnSpacing="10" RowSpacing="5" BorderThickness="10" 
+   PointerPressed="Page_PointerPressed"
    CanDrag="True" 
    AllowDrop="True"
    DragEnter="Grid_DragEnter"
    Drop="Page_Drop">
-      
+
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="*"/>
          <ColumnDefinition Width="*"/>
@@ -178,7 +181,5 @@
             </StackPanel>
          </Button>
       </Grid>
-
    </Grid>
-
 </Page>

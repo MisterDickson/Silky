@@ -1,25 +1,14 @@
-using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
-using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using Windows.ApplicationModel.Calls.Background;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.System;
@@ -43,7 +32,6 @@ namespace Silky
          NavigationCacheMode = NavigationCacheMode.Enabled;
          Core = new SilkyCore(PCBListView);
          LastFocussedPCBorOperationsListView = PCBListView;
-
          LoadCommandLineArgPCBs();
       }
 
@@ -460,6 +448,12 @@ namespace Silky
          LastFocussedPCBorOperationsListView = OperationsListView;
       }
 
-
+      private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
+      {
+         if (e.GetCurrentPoint(this).Properties.IsXButton2Pressed)
+         {
+            if (Frame.CanGoForward) Frame.GoForward();
+         }
+      }
    }
 }
