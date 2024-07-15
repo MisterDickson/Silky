@@ -8,15 +8,15 @@
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    mc:Ignorable="d"
    KeyDown="Page_KeyDown"
-   PointerPressed="Page_PointerPressed">
-
-
-   <Grid ColumnSpacing="10" RowSpacing="5" BorderThickness="10" 
    PointerPressed="Page_PointerPressed"
    CanDrag="True" 
    AllowDrop="True"
    DragEnter="Grid_DragEnter"
    Drop="Page_Drop">
+
+
+   <ScrollView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ContentOrientation="None">
+      <Grid ColumnSpacing="10" RowSpacing="5" BorderThickness="10">
 
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="*"/>
@@ -182,4 +182,6 @@
          </Button>
       </Grid>
    </Grid>
+   </ScrollView>
+   
 </Page>

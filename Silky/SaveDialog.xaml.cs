@@ -88,15 +88,15 @@ namespace Silky
       {
          if (Core.operations.Count < 1) return;
 
-         List<string> savePaths = new List<string>();
+         List<string> savePaths = [];
          string textBoxPath = PathTextBox.Text.Replace("/", @"\" /*le windows*/).Replace(@"\\", @"\").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "");
 
          if (textBoxPath == "") textBoxPath = PathTextBox.PlaceholderText;
 
-         if (textBoxPath.LastIndexOf(@"\") > textBoxPath.LastIndexOf("*") || !textBoxPath.Contains("*"))
-         { textBoxPath = textBoxPath + "*_edited"; }
+         if (textBoxPath.LastIndexOf('\\') > textBoxPath.LastIndexOf('*') || !textBoxPath.Contains('*'))
+         { textBoxPath += "*_edited"; }
 
-         if (textBoxPath.Contains(":")) // absulute path
+         if (textBoxPath.Contains(':')) // absulute path
          {
             // creating every missing directory
             string[] directories = textBoxPath.Split('\\').SkipLast(1).ToArray();
@@ -117,7 +117,7 @@ namespace Silky
                }
             }
 
-            foreach (ListViewItem PCBListViewEntry in Core.Source.Items)
+            foreach (ListViewItem PCBListViewEntry in Core.Source.Items.Cast<ListViewItem>())
             {
                string savePath = textBoxPath.Replace("/", @"\").Replace(@"\\", @"\").Replace("*", PCBListViewEntry.Content.ToString()) + ".kicad_pcb";
                savePaths.Add(savePath);
@@ -142,7 +142,7 @@ namespace Silky
             if (textBoxPath.ElementAt(0) != '\\')
             { textBoxPath = @"\" + textBoxPath; }
 
-            foreach (ListViewItem PCBListViewEntry in Core.Source.Items)
+            foreach (ListViewItem PCBListViewEntry in Core.Source.Items.Cast<ListViewItem>())
             {
                string pcbPath = PCBListViewEntry.DataContext.ToString();
                string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace("/", @"\").Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
@@ -185,7 +185,7 @@ namespace Silky
 
          if (OpenFoldersAfterSave.IsChecked == true)
          {
-            List<string> alreadyOpenedFolders = new List<string>();
+            List<string> alreadyOpenedFolders = [];
 
             foreach (string file in savePaths)
             {

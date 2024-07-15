@@ -8,15 +8,15 @@
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    mc:Ignorable="d"
                          
-                                       >
-
-
-   <Grid x:ConnectionId='2' ColumnSpacing="10" RowSpacing="5" BorderThickness="10" 
                                        
    CanDrag="True" 
    AllowDrop="True"
                              
                    >
+
+
+   <ScrollView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ContentOrientation="None">
+      <Grid ColumnSpacing="10" RowSpacing="5" BorderThickness="10">
 
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="*"/>
@@ -33,7 +33,7 @@
 
       <TextBlock Grid.Row="0" Grid.Column="0" Text="Circuit Board Files" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"/>
 
-      <ListView x:ConnectionId='3' Grid.Row="1" Grid.Column="0" SelectionMode="Extended" VerticalAlignment="Top" x:Name="PCBListView"                                                />
+      <ListView x:ConnectionId='2' Grid.Row="1" Grid.Column="0" SelectionMode="Extended" VerticalAlignment="Top" x:Name="PCBListView"                                                />
 
       <Grid Grid.Row="2" Grid.Column="0" ColumnSpacing="5" VerticalAlignment="Center">
 
@@ -42,13 +42,13 @@
             <ColumnDefinition Width="*"/>
          </Grid.ColumnDefinitions>
 
-         <Button x:ConnectionId='19' Grid.Column="0" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch" AccessKey="A" x:Name="LoadPCBFileButton"                                >
+         <Button x:ConnectionId='18' Grid.Column="0" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch" AccessKey="A" x:Name="LoadPCBFileButton"                                >
             <StackPanel Orientation="Horizontal" Spacing="6">
                <SymbolIcon Symbol="OpenFile" />
                <TextBlock Text="Add" />
             </StackPanel>
          </Button>
-         <Button x:ConnectionId='20' Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="R" x:Name="RemovePCBFileButton"                                  >
+         <Button x:ConnectionId='19' Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="R" x:Name="RemovePCBFileButton"                                  >
             <StackPanel Orientation="Horizontal" Spacing="6">
                <SymbolIcon Symbol="Clear" />
                <TextBlock Text="Remove" />
@@ -67,46 +67,46 @@
             <RowDefinition Height="3*"/>
          </Grid.RowDefinitions>
 
-         <ListView x:ConnectionId='16' Grid.Row="0" Grid.Column="0" SelectionMode="Extended" VerticalAlignment="Top" x:Name="FromLayerListView"                                                      />
+         <ListView x:ConnectionId='15' Grid.Row="0" Grid.Column="0" SelectionMode="Extended" VerticalAlignment="Top" x:Name="FromLayerListView"                                                      />
 
          <TextBlock Grid.Row="1" Text="To" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"/>
 
-         <ListView x:ConnectionId='17' Grid.Row="2" SelectionMode="Extended" VerticalAlignment="Top" x:Name="ToLayerListView"/>
+         <ListView x:ConnectionId='16' Grid.Row="2" SelectionMode="Extended" VerticalAlignment="Top" x:Name="ToLayerListView"/>
 
          <TextBlock Grid.Row="3" Text="Apply to Parts" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"/>
 
-         <ListView x:ConnectionId='18' Grid.Row="4" SelectionMode="Extended" VerticalAlignment="Top" x:Name="ApplyToPartListView"/>
+         <ListView x:ConnectionId='17' Grid.Row="4" SelectionMode="Extended" VerticalAlignment="Top" x:Name="ApplyToPartListView"/>
 
       </Grid>
 
       <DropDownButton Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="P">
          <StackPanel Orientation="Horizontal" Spacing="6">
-            <FontIcon x:ConnectionId='10' x:Name="PresetFontIcon" Glyph="&#xE8FD;"/>
-            <TextBlock x:ConnectionId='11' x:Name="PresetTextBlock" Text="Preset Options" />
+            <FontIcon x:ConnectionId='9' x:Name="PresetFontIcon" Glyph="&#xE8FD;"/>
+            <TextBlock x:ConnectionId='10' x:Name="PresetTextBlock" Text="Preset Options" />
          </StackPanel>
 
 
          <DropDownButton.Flyout>
             <MenuFlyout Placement="Bottom">
-               <MenuFlyoutItem x:ConnectionId='12' Text="Hand Soldering" ToolTipService.Placement="Right" ToolTipService.ToolTip="Footprints, Values and Texts are visible on F.SilkS. &#x0a;Any remainings on *.SilkS are moved to F.Fab" x:Name="HandSolderingPreset"                                  >
+               <MenuFlyoutItem x:ConnectionId='11' Text="Hand Soldering" ToolTipService.Placement="Right" ToolTipService.ToolTip="Footprints, Values and Texts are visible on F.SilkS. &#x0a;Any remainings on *.SilkS are moved to F.Fab" x:Name="HandSolderingPreset"                                  >
                   <MenuFlyoutItem.Icon>
                      <FontIcon Glyph="&#xE929;"/>
                   </MenuFlyoutItem.Icon>
                </MenuFlyoutItem>
 
-               <MenuFlyoutItem x:ConnectionId='13' Text="Blank PCB" ToolTipService.Placement="Right" ToolTipService.ToolTip="All content of *.SilkS is moved to F.Fab" x:Name="BlankPCBPreset"                             >
+               <MenuFlyoutItem x:ConnectionId='12' Text="Blank PCB" ToolTipService.Placement="Right" ToolTipService.ToolTip="All content of *.SilkS is moved to F.Fab" x:Name="BlankPCBPreset"                             >
                   <MenuFlyoutItem.Icon>
                      <FontIcon Glyph="&#xE7C4;"/>
                   </MenuFlyoutItem.Icon>
                </MenuFlyoutItem>
 
-               <MenuFlyoutItem x:ConnectionId='14' Text="HTL Wien 10 - Values" ToolTipService.Placement="Right" ToolTipService.ToolTip="All content of *.SilkS is moved to F.Fab. &#x0a;Values are visible on F.Cu" x:Name="HTL10Preset"                                >
+               <MenuFlyoutItem x:ConnectionId='13' Text="HTL Wien 10 - Values" ToolTipService.Placement="Right" ToolTipService.ToolTip="All content of *.SilkS is moved to F.Fab. &#x0a;Values are visible on F.Cu" x:Name="HTL10Preset"                                >
                   <MenuFlyoutItem.Icon>
                      <FontIcon Glyph="&#xEEA3;"/>
                   </MenuFlyoutItem.Icon>
                </MenuFlyoutItem>
 
-               <MenuFlyoutItem x:ConnectionId='15' Text="HTL Wien 10 - References" ToolTipService.Placement="Right" ToolTipService.ToolTip="All content of *.SilkS is moved to F.Fab. &#x0a;References are visible on F.Cu" x:Name="HTL10ReferencePreset"                                   >
+               <MenuFlyoutItem x:ConnectionId='14' Text="HTL Wien 10 - References" ToolTipService.Placement="Right" ToolTipService.ToolTip="All content of *.SilkS is moved to F.Fab. &#x0a;References are visible on F.Cu" x:Name="HTL10ReferencePreset"                                   >
                   <MenuFlyoutItem.Icon>
                      <FontIcon Glyph="&#xE8B3;"/>
                   </MenuFlyoutItem.Icon>
@@ -132,13 +132,13 @@
                   <ColumnDefinition Width="*"/>
                </Grid.ColumnDefinitions>
 
-               <Button x:ConnectionId='8' Grid.Column="0" HorizontalAlignment="Stretch" AccessKey="+" x:Name="AddOperationButton"                                 >
+               <Button x:ConnectionId='7' Grid.Column="0" HorizontalAlignment="Stretch" AccessKey="+" x:Name="AddOperationButton"                                 >
                   <StackPanel Orientation="Horizontal" Spacing="6">
                      <SymbolIcon Symbol="Add" />
                      <TextBlock Text="Add" />
                   </StackPanel>
                </Button>
-               <Button x:ConnectionId='9' Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="-" x:Name="RemoveOperationButton"                                    >
+               <Button x:ConnectionId='8' Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="-" x:Name="RemoveOperationButton"                                    >
                   <StackPanel Orientation="Horizontal" Spacing="6">
                      <SymbolIcon Symbol="Remove" />
                      <TextBlock Text="Remove" />
@@ -147,10 +147,10 @@
             </Grid>
          </Grid>
 
-         <ListView x:ConnectionId='6' Grid.Row="1" SelectionMode="Extended" VerticalAlignment="Top" x:Name="OperationsListView"                                                       />
+         <ListView x:ConnectionId='5' Grid.Row="1" SelectionMode="Extended" VerticalAlignment="Top" x:Name="OperationsListView"                                                       />
 
 
-         <Button x:ConnectionId='7' Grid.Row="2" HorizontalAlignment="Stretch" AccessKey="V" VerticalAlignment="Bottom" x:Name="PreviewButton"                            >
+         <Button x:ConnectionId='6' Grid.Row="2" HorizontalAlignment="Stretch" AccessKey="V" VerticalAlignment="Bottom" x:Name="PreviewButton"                            >
             <StackPanel Orientation="Horizontal" Spacing="6">
                <SymbolIcon Symbol="View"/>
                <TextBlock Text="Preview"/>
@@ -166,14 +166,14 @@
             <ColumnDefinition Width="*"/>
          </Grid.ColumnDefinitions>
 
-         <Button x:ConnectionId='4' Grid.Column="0" HorizontalAlignment="Stretch" AccessKey="O" x:Name="OverrideAllButton"                                >
+         <Button x:ConnectionId='3' Grid.Column="0" HorizontalAlignment="Stretch" AccessKey="O" x:Name="OverrideAllButton"                                >
             <StackPanel Orientation="Horizontal" Spacing="6">
                <SymbolIcon Symbol="SaveLocal"/>
                <TextBlock Text="Override all"/>
             </StackPanel>
          </Button>
 
-         <Button x:ConnectionId='5' Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="S" x:Name="SaveAllAsButton"                              >
+         <Button x:ConnectionId='4' Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="S" x:Name="SaveAllAsButton"                              >
             <StackPanel Orientation="Horizontal" Spacing="6">
                <SymbolIcon Symbol="Save"/>
                <TextBlock Text="Save a Copy"/>
@@ -182,5 +182,7 @@
          </Button>
       </Grid>
    </Grid>
+   </ScrollView>
+   
 </Page>
 
