@@ -30,29 +30,29 @@
     <AppXManifest Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-07-16T12:13:04.212</Modified>
+      <Modified>2024-07-16T15:35:06.335</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-07-16T08:47:14.491</Modified>
+      <Modified>2024-07-16T13:48:29.196</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.runtimeconfig.json">
       <PackagePath>Silky.runtimeconfig.json</PackagePath>
-      <Modified>2024-07-15T18:50:36.503</Modified>
+      <Modified>2024-07-16T13:48:28.930</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.dll">
       <PackagePath>Silky.dll</PackagePath>
-      <Modified>2024-07-16T12:13:03.958</Modified>
+      <Modified>2024-07-16T15:35:05.781</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\apphost.exe">
       <PackagePath>Silky.exe</PackagePath>
-      <Modified>2024-07-16T12:13:03.963</Modified>
+      <Modified>2024-07-16T15:35:05.799</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.deps.json">
       <PackagePath>Silky.deps.json</PackagePath>
-      <Modified>2024-07-15T18:50:36.459</Modified>
+      <Modified>2024-07-16T13:47:36.071</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\.nuget\packages\microsoft.netcore.app.runtime.win-x64\8.0.7\runtimes\win-x64\lib\net8.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Storage.Pickers;
 using Windows.Storage;
+using System.Threading;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -143,7 +144,7 @@ namespace Silky
             {
                string pcbPath = PCBListViewEntry.DataContext.ToString();
                string savePath = (System.IO.Path.GetDirectoryName(pcbPath) + @"\" + textBoxPath).Replace("/", @"\").Replace(@"\\", @"\").Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath)) + ".kicad_pcb";
-               // creatung every missing directory
+               // creating every missing directory
                string[] directories = System.IO.Path.GetDirectoryName(textBoxPath.Replace("*", System.IO.Path.GetFileNameWithoutExtension(pcbPath))! + ".kicad_pcb")!.Split('\\');
                string path = System.IO.Path.GetDirectoryName(pcbPath)!;
                foreach (string directory in directories)
@@ -231,13 +232,49 @@ namespace Silky
          Directory.CreateDirectory(saveDirectory);
          Directory.SetCurrentDirectory(saveDirectory);
 
-         string bCuExportCommand = "pcb export svg -o \""+saveDirectory+"\\Bottom.svg\" --layers B.Cu -n --black-and-white --page-size-mode 2 --exclude-drawing-sheet " + filePath;
-         string fCuExportCommand = "pcb export svg -o \"" + saveDirectory + "\\Top.svg\" --layers F.Cu -n --black-and-white --page-size-mode 2 --exclude-drawing-sheet " + filePath;
+         string bCuExportCommand = "pcb export svg -o \""+saveDirectory+"\\"+ Path.GetFileNameWithoutExtension(filePath)+"-Bottom.svg\" --layers B.Cu -n --black-and-white --page-size-mode 2 --exclude-drawing-sheet " + filePath;
+         string fCuExportCommand = "pcb export svg -o \"" + saveDirectory + "\\"+Path.GetFileNameWithoutExtension(filePath)+"-Top.svg\" --layers F.Cu -n --black-and-white --page-size-mode 2 --exclude-drawing-sheet " + filePath;
          string drillExportCommand = "pcb export drill --drill-origin plot --excellon-zeros-format suppressleading -u in --excellon-min-header " + filePath;
 
          Process.Start(Intermediate.localSettings.Values["cliPath"].ToString(), bCuExportCommand);
          Process.Start(Intermediate.localSettings.Values["cliPath"].ToString(), fCuExportCommand);
-         Process.Start(Intermediate.localSettings.Values["cliPath"].ToString(), drillExportCommand);
+         Process.Start(Intermediate.localSettings.Values["cliPath"].ToString(), drillExportCommand).WaitForExit();
+
+         string sourceFile = Path.GetFileNameWithoutExtension(filePath) + ".drl";
+         string toolInfoFile = Path.GetFileNameWithoutExtension(filePath) + "-Bohrdurchmesser.txt";
+         string excellonFile = Path.GetFileNameWithoutExtension(filePath) + ".exc";
+
+         using (StreamReader reader = new StreamReader(sourceFile))
+         {
+            string line;
+            using (StreamWriter writer = new StreamWriter(toolInfoFile))
+            {
+               while ((line = reader.ReadLine()) != null)
+               {
+                  int tool_number = 1;
+
+                  if (line[0] != 'T') continue;
+                  if (line == "T1") break;
+
+                  int seperator_index = line.IndexOf('C'); // index of C in T12C0.0135 for example
+                  double metric_diameter = double.Parse(line[(seperator_index + 1)..], System.Globalization.CultureInfo.InvariantCulture) * 25.4;
+
+                  writer.WriteLine("T" + tool_number + string.Format(": {0:F2}", metric_diameter) + (metric_diameter < 0.8 ? " mm - Nicht im Sortiment (< 0.8 mm)" : " mm"));
+                  tool_number++;
+               }
+            }
+            using (StreamWriter writer = new StreamWriter(excellonFile))
+            {
+               do
+               {
+                  if (line.Contains("X-"))
+                     line = line.Replace("X-", "X");
+                  writer.WriteLine(line);
+               } while ((line = reader.ReadLine()) != null);
+            }
+         }
+
+         File.Delete(sourceFile);
       }
 
       private async void PickKiCadDialog()
