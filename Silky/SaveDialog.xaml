@@ -35,7 +35,7 @@
 
 
 
-         <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox" />
+         <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox" KeyDown="PathTextBox_KeyDown" />
 
          <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>

@@ -13,7 +13,6 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Storage.Pickers;
 using Windows.Storage;
-using System.Threading;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -87,6 +86,8 @@ namespace Silky
 
          List<string> savePaths = [];
          string textBoxPath = PathTextBox.Text.Replace("/", @"\" /*le windows*/).Replace(@"\\", @"\").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "");
+
+         if (ExportHTL10FabFilesCheckBox.IsChecked == true) textBoxPath = textBoxPath.Replace(" ", "_");
 
          if (textBoxPath == "") textBoxPath = PathTextBox.PlaceholderText;
 
@@ -303,6 +304,11 @@ namespace Silky
          StorageFile cliFile = await openPicker.PickSingleFileAsync();
 
          Intermediate.localSettings.Values["cliPath"] = cliFile.Path;
+      }
+
+      private void PathTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+      {
+         if (e.Key == Windows.System.VirtualKey.Enter) SaveCopiesButton_Click(sender, e);
       }
    }
 }

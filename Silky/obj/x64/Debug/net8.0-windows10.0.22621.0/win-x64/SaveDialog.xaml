@@ -35,7 +35,7 @@
 
 
 
-         <TextBox x:ConnectionId='3' Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox" />
+         <TextBox x:ConnectionId='3' Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox"                               />
 
          <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
