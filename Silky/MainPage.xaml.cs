@@ -32,6 +32,7 @@ namespace Silky
          NavigationCacheMode = NavigationCacheMode.Enabled;
          Core = new SilkyCore(PCBListView);
          LastFocussedPCBorOperationsListView = PCBListView;
+         PresetTextBlock.Text = Intermediate.PresetText.Default;
          LoadCommandLineArgPCBs();
       }
 
@@ -177,7 +178,7 @@ namespace Silky
 
          if (PCBListView.Items.Count < 1)
          {
-            PresetTextBlock.Text = "Preset Options";
+            PresetTextBlock.Text = Intermediate.PresetText.Default;
             PresetFontIcon.Glyph = "\uE8FD";
          }
       }
@@ -203,8 +204,8 @@ namespace Silky
          }
          OperationsListView.ItemsSource = Core.OperationNames;
 
-         if (somethingChanged && PresetTextBlock.Text is not "Preset Options" && !PresetTextBlock.Text.Contains("Modifications"))
-            PresetTextBlock.Text += " with Modifications";
+         if (somethingChanged && PresetTextBlock.Text is not Intermediate.PresetText.Default && !PresetTextBlock.Text.Contains(Intermediate.PresetText.Modified))
+            PresetTextBlock.Text += Intermediate.PresetText.Modified;
 
       }
 
@@ -218,8 +219,8 @@ namespace Silky
          OperationsListView.ItemsSource = null;
          OperationsListView.ItemsSource = Core.OperationNames;
 
-         if (PresetTextBlock.Text is not "Preset Options" && !PresetTextBlock.Text.Contains("Modifications"))
-            PresetTextBlock.Text += " with Modifications";
+         if (PresetTextBlock.Text is not Intermediate.PresetText.Default && !PresetTextBlock.Text.Contains(Intermediate.PresetText.Modified))
+            PresetTextBlock.Text += Intermediate.PresetText.Modified;
       }
       private void PreviewButton_Click(object sender, RoutedEventArgs e)
       {
@@ -284,7 +285,7 @@ namespace Silky
 
          AddOperationButton_Click(this, e);
 
-         PresetTextBlock.Text = "Hand soldering preset";
+         PresetTextBlock.Text = Intermediate.PresetText.HandSoldering;
          PresetFontIcon.Glyph = "\uE929";
       }
 
@@ -316,7 +317,7 @@ namespace Silky
 
          AddOperationButton_Click(this, e);
 
-         PresetTextBlock.Text = "Blank PCB preset";
+         PresetTextBlock.Text = Intermediate.PresetText.BlankPCB;
          PresetFontIcon.Glyph = "\uE7C4";
       }
 
@@ -358,7 +359,7 @@ namespace Silky
 
          AddOperationButton_Click(this, e);
 
-         PresetTextBlock.Text = "HTL 10 Values preset";
+         PresetTextBlock.Text = Intermediate.PresetText.HTL10Values;
          PresetFontIcon.Glyph = "\uEEA3";
       }
 
@@ -400,7 +401,7 @@ namespace Silky
 
          AddOperationButton_Click(this, e);
 
-         PresetTextBlock.Text = "HTL 10 References preset";
+         PresetTextBlock.Text = Intermediate.PresetText.HTL10References;
          PresetFontIcon.Glyph = "\uE8B3";
       }
 

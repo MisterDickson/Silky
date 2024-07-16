@@ -30,29 +30,29 @@
     <AppXManifest Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-07-15T10:31:38.195</Modified>
+      <Modified>2024-07-16T12:13:04.212</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2024-07-15T10:31:37.935</Modified>
+      <Modified>2024-07-16T08:47:14.491</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.runtimeconfig.json">
       <PackagePath>Silky.runtimeconfig.json</PackagePath>
-      <Modified>2024-07-14T08:17:27.176</Modified>
+      <Modified>2024-07-15T18:50:36.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.dll">
       <PackagePath>Silky.dll</PackagePath>
-      <Modified>2024-07-15T10:31:37.807</Modified>
+      <Modified>2024-07-16T12:13:03.958</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\apphost.exe">
       <PackagePath>Silky.exe</PackagePath>
-      <Modified>2024-07-15T10:31:37.820</Modified>
+      <Modified>2024-07-16T12:13:03.963</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\bin\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.deps.json">
       <PackagePath>Silky.deps.json</PackagePath>
-      <Modified>2024-07-14T08:17:27.035</Modified>
+      <Modified>2024-07-15T18:50:36.459</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\.nuget\packages\microsoft.netcore.app.runtime.win-x64\8.0.7\runtimes\win-x64\lib\net8.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -854,45 +854,49 @@
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
       <Modified>2024-06-25T19:48:44.000</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png">
+      <PackagePath>Assets\AppIconSource.png</PackagePath>
+      <Modified>2024-07-15T18:47:00.324</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\BadgeLogo.scale-100.png">
       <PackagePath>Assets\BadgeLogo.scale-100.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.700</Modified>
+      <Modified>2024-07-15T18:47:26.679</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\BadgeLogo.scale-125.png">
       <PackagePath>Assets\BadgeLogo.scale-125.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.700</Modified>
+      <Modified>2024-07-15T18:47:26.690</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\BadgeLogo.scale-150.png">
       <PackagePath>Assets\BadgeLogo.scale-150.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.700</Modified>
+      <Modified>2024-07-15T18:47:26.702</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\BadgeLogo.scale-200.png">
       <PackagePath>Assets\BadgeLogo.scale-200.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.700</Modified>
+      <Modified>2024-07-15T18:47:26.713</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\BadgeLogo.scale-400.png">
       <PackagePath>Assets\BadgeLogo.scale-400.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.700</Modified>
+      <Modified>2024-07-15T18:47:26.730</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\LargeTile.scale-100.png">
       <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.700</Modified>
+      <Modified>2024-07-15T18:47:25.635</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\LargeTile.scale-125.png">
       <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.670</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\LargeTile.scale-150.png">
       <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.713</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\LargeTile.scale-200.png">
       <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.761</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\LargeTile.scale-400.png">
       <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.906</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -900,151 +904,147 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Silky.ico">
       <PackagePath>Assets\Silky.ico</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:49:27.803</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SmallTile.scale-100.png">
       <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.290</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SmallTile.scale-125.png">
       <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.306</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SmallTile.scale-150.png">
       <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.328</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SmallTile.scale-200.png">
       <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.342</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SmallTile.scale-400.png">
       <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png">
-      <PackagePath>Assets\Source-AppIcon.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:25.369</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:26.239</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SplashScreen.scale-125.png">
       <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:26.279</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SplashScreen.scale-150.png">
       <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:26.328</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.712</Modified>
+      <Modified>2024-07-15T18:47:26.404</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SplashScreen.scale-400.png">
       <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.668</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square150x150Logo.scale-100.png">
       <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.382</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square150x150Logo.scale-125.png">
       <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.396</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square150x150Logo.scale-150.png">
       <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.411</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.429</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square150x150Logo.scale-400.png">
       <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.472</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.127</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.142</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.211</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.158</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.175</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.049</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.111</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.072</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:26.084</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.scale-100.png">
       <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.scale-125.png">
       <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.929</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.scale-150.png">
       <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.941</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.728</Modified>
+      <Modified>2024-07-15T18:47:25.952</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.scale-400.png">
       <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:25.968</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.targetsize-16.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:25.978</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.targetsize-24.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:25.990</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.061</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.targetsize-256.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.038</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.targetsize-32.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-32.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.003</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Square44x44Logo.targetsize-48.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.014</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\StoreLogo.backup.png">
       <PackagePath>Assets\StoreLogo.backup.png</PackagePath>
@@ -1052,43 +1052,43 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\StoreLogo.scale-100.png">
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.746</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\StoreLogo.scale-125.png">
       <PackagePath>Assets\StoreLogo.scale-125.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.759</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\StoreLogo.scale-150.png">
       <PackagePath>Assets\StoreLogo.scale-150.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.773</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\StoreLogo.scale-200.png">
       <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.791</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\StoreLogo.scale-400.png">
       <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:26.811</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Wide310x150Logo.scale-100.png">
       <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:25.485</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Wide310x150Logo.scale-125.png">
       <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:25.503</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Wide310x150Logo.scale-150.png">
       <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:25.523</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:25.550</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Wide310x150Logo.scale-400.png">
       <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
-      <Modified>2024-07-13T21:27:45.744</Modified>
+      <Modified>2024-07-15T18:47:25.613</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

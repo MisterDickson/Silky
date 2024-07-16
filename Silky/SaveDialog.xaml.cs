@@ -1,25 +1,18 @@
-using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Core;
-using Windows.UI.Popups;
-using Windows.UI.Shell;
+using Windows.Storage.Pickers;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,9 +26,10 @@ namespace Silky
    {
       public SaveDialog()
       {
-         this.InitializeComponent();
-         this.NavigationCacheMode = NavigationCacheMode.Enabled;
+         InitializeComponent();
+         NavigationCacheMode = NavigationCacheMode.Enabled;
       }
+
       public void AdjustUIGrammar()
       {
          OpenFilesAfterSave.Content = "Open Files after saving";
@@ -75,6 +69,8 @@ namespace Silky
       {
          Core = e.Parameter as SilkyCore;
          base.OnNavigatedTo(e);
+
+         ExportHTL10FabFilesCheckBox.IsChecked = Intermediate.PresetText.CurrentPreset.Contains("HTL");
 
          AdjustUIGrammar();
       }
@@ -126,8 +122,9 @@ namespace Silky
                {
                   File.Copy(PCBListViewEntry.DataContext.ToString(), savePath, true);
                   ListViewItem successfulLog = Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath);
-
                   successfulLog.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 223, 246, 221));
+                  successfulLog.Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 26, 26, 26));
+                  if (ExportHTL10FabFilesCheckBox.IsChecked == true) ExportHTL10FabFiles(savePath);
 
                   SavedFileLogListView.Items.Add(successfulLog);
                }
@@ -163,8 +160,10 @@ namespace Silky
                {
                   File.Copy(pcbPath, savePath, true);
                   ListViewItem successfulLog = Intermediate.PrepareListViewItem(Path.GetFileName(savePath), savePath);
-
                   successfulLog.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 223, 246, 221));
+                  successfulLog.Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 26, 26, 26));
+
+                  if (ExportHTL10FabFilesCheckBox.IsChecked == true) ExportHTL10FabFiles(savePath);
 
                   SavedFileLogListView.Items.Add(successfulLog);
                }
@@ -195,12 +194,78 @@ namespace Silky
                alreadyOpenedFolders.Add(System.IO.Path.GetDirectoryName(file)!);
             }
          }
+
          SavedFileLogListView.ScrollIntoView(SavedFileLogListView.Items.ElementAt(SavedFileLogListView.Items.Count - 1));
       }
 
       private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
       {
          if (e.GetCurrentPoint(this).Properties.IsXButton1Pressed) BackToMainFromSaveButton_Click(sender, e);
+      }
+
+      public void ExportHTL10FabFiles(string filePath)
+      {
+         // 1) Try to find kicad-cli.exe by looking through some common paths
+         // 2) If unsuccessful ask the user to locate it
+         // 3) If still unsuccessful fuck it
+
+         if (Intermediate.localSettings.Values["cliPath"] is null || !Path.Exists(Intermediate.localSettings.Values["cliPath"].ToString())) // 1)
+         {
+            for (int commonVersionNumber = 9; commonVersionNumber >= 4; commonVersionNumber--)
+            {
+               string commonPath = "C:\\Program Files\\KiCad\\"+commonVersionNumber+".0\\bin\\kicad-cli.exe";
+               if (Path.Exists(commonPath))
+               {
+                  Intermediate.localSettings.Values["cliPath"] = commonPath;
+                  break;
+               }
+            }
+         }
+
+         if (Intermediate.localSettings.Values["cliPath"] is null || !Path.Exists(Intermediate.localSettings.Values["cliPath"].ToString())) // 2)
+            PickKiCadDialog();
+
+         if (Intermediate.localSettings.Values["cliPath"] is null || !Path.Exists(Intermediate.localSettings.Values["cliPath"].ToString())) return; // 3)
+
+         string saveDirectory = Path.GetDirectoryName(filePath) + "\\" + Path.GetFileNameWithoutExtension(filePath) + "-" + DateAndTime.Now.ToString().Replace(':', '-');
+         Directory.CreateDirectory(saveDirectory);
+         Directory.SetCurrentDirectory(saveDirectory);
+
+         string bCuExportCommand = "pcb export svg -o \""+saveDirectory+"\\Bottom.svg\" --layers B.Cu -n --black-and-white --page-size-mode 2 --exclude-drawing-sheet " + filePath;
+         string fCuExportCommand = "pcb export svg -o \"" + saveDirectory + "\\Top.svg\" --layers F.Cu -n --black-and-white --page-size-mode 2 --exclude-drawing-sheet " + filePath;
+         string drillExportCommand = "pcb export drill --drill-origin plot --excellon-zeros-format suppressleading -u in --excellon-min-header " + filePath;
+
+         Process.Start(Intermediate.localSettings.Values["cliPath"].ToString(), bCuExportCommand);
+         Process.Start(Intermediate.localSettings.Values["cliPath"].ToString(), fCuExportCommand);
+         Process.Start(Intermediate.localSettings.Values["cliPath"].ToString(), drillExportCommand);
+      }
+
+      private async void PickKiCadDialog()
+      {
+         ContentDialog subscribeDialog = new ContentDialog
+         {
+            Title = "KiCad CLI not found",
+            Content = "Please manually select the Location of your KiCad CLI installtion. The Path will be saved for Future Sessions.",
+            CloseButtonText = "Cancel Fabrication Export",
+            PrimaryButtonText = "Select CLI Path",
+            DefaultButton = ContentDialogButton.Primary
+         };
+         subscribeDialog.XamlRoot = XamlRoot;
+         ContentDialogResult result = await subscribeDialog.ShowAsync();
+
+         if (result != ContentDialogResult.Primary) return;
+
+         var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
+         var window = Intermediate.MainWindow;
+         var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+         WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
+
+         openPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
+         openPicker.FileTypeFilter.Add(".exe");
+
+         StorageFile cliFile = await openPicker.PickSingleFileAsync();
+
+         Intermediate.localSettings.Values["cliPath"] = cliFile.Path;
       }
    }
 }

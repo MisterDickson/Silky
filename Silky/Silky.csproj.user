@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Source>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</Source>
-    <SmallTileSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</SmallTileSource>
-    <MediumTileSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</MediumTileSource>
-    <WideTileSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</WideTileSource>
-    <LargeTileSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</LargeTileSource>
-    <AppIconSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</AppIconSource>
-    <SplashScreenSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</SplashScreenSource>
-    <BadgeLogoSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</BadgeLogoSource>
-    <PackageLogoSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png</PackageLogoSource>
+    <Source>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</Source>
+    <SmallTileSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</SmallTileSource>
+    <MediumTileSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</MediumTileSource>
+    <WideTileSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</WideTileSource>
+    <LargeTileSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</LargeTileSource>
+    <AppIconSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</AppIconSource>
+    <SplashScreenSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</SplashScreenSource>
+    <BadgeLogoSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</BadgeLogoSource>
+    <PackageLogoSource>C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png</PackageLogoSource>
   </PropertyGroup>
   <ItemGroup>
     <None Update="App.xaml">

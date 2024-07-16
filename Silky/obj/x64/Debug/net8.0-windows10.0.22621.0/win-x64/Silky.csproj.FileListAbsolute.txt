@@ -220,13 +220,13 @@ C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\SaveDialog.g.cs
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\XamlTypeInfo.g.cs
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\App.xaml
+C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\MainPage.xaml
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\MainWindow.xaml
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\SaveDialog.xaml
-C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\MainPage.xaml
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\App.xbf
+C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\MainPage.xbf
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\MainWindow.xbf
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\SaveDialog.xbf
-C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\MainPage.xbf
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\XamlSaveStateFile.xml
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Adrian\source\repos\Silky\Silky\obj\x64\Debug\net8.0-windows10.0.22621.0\win-x64\Silky.AssemblyInfoInputs.cache

@@ -9,7 +9,7 @@
    mc:Ignorable="d"
                          
                                        
-   CanDrag="True" 
+   CanDrag="False"
    AllowDrop="True"
                              
                    >
@@ -82,7 +82,7 @@
       <DropDownButton Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="P">
          <StackPanel Orientation="Horizontal" Spacing="6">
             <FontIcon x:ConnectionId='9' x:Name="PresetFontIcon" Glyph="&#xE8FD;"/>
-            <TextBlock x:ConnectionId='10' x:Name="PresetTextBlock" Text="Preset Options" />
+            <TextBlock x:ConnectionId='10' x:Name="PresetTextBlock" />
          </StackPanel>
 
 

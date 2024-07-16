@@ -9,7 +9,7 @@
    mc:Ignorable="d"
    KeyDown="Page_KeyDown"
    PointerPressed="Page_PointerPressed"
-   CanDrag="True" 
+   CanDrag="False"
    AllowDrop="True"
    DragEnter="Grid_DragEnter"
    Drop="Page_Drop">
@@ -82,7 +82,7 @@
       <DropDownButton Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" AccessKey="P">
          <StackPanel Orientation="Horizontal" Spacing="6">
             <FontIcon x:Name="PresetFontIcon" Glyph="&#xE8FD;"/>
-            <TextBlock x:Name="PresetTextBlock" Text="Preset Options" />
+            <TextBlock x:Name="PresetTextBlock" />
          </StackPanel>
 
 

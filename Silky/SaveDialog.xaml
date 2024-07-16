@@ -8,64 +8,78 @@
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    mc:Ignorable="d"
    PointerPressed="Page_PointerPressed">
-   
+
    <ScrollView HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
       <Grid HorizontalAlignment="Center" VerticalAlignment="Top" RowSpacing="25" BorderThickness="90" Margin="0 50 0 0">
          <Grid.RowDefinitions>
-         <RowDefinition Height="2*"/>
-         <RowDefinition Height="*"/>
-         <RowDefinition Height="3*"/>
-         <RowDefinition Height="*"/>
-         <RowDefinition Height="*"/>
-         <RowDefinition Height="2*"/>
-         <RowDefinition Height="5*"/>
-      </Grid.RowDefinitions>
-
-      <Grid.ColumnDefinitions>
-         <ColumnDefinition Width="*"/>
-         <ColumnDefinition Width="4*"/>
-         <ColumnDefinition Width="*"/>
-      </Grid.ColumnDefinitions>
-
-      <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Text="Save a Copy" x:Name="TitleTextBlock"/>
-
-      <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource BodyStrongTextBlockStyle}">
-            An asterisk represents the original File Name.<LineBreak/>Each File's relative Path is used as Root unless an absulute Path is given.
-      </TextBlock>
-
-
-
-      <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox" />
-
-      <CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Content="Open Files after saving" x:Name="OpenFilesAfterSave"/>
-
-      <CheckBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Content="Open Folders after saving" x:Name="OpenFoldersAfterSave"/>
-
-      <Grid Grid.Row="5" Grid.Column="1" ColumnSpacing="5" HorizontalAlignment="Stretch">
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+         </Grid.RowDefinitions>
 
          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
          </Grid.ColumnDefinitions>
 
-         <Button Grid.Column="0" HorizontalAlignment="Stretch" AccessKey="B" x:Name="BackToMainFromSaveButton" Click="BackToMainFromSaveButton_Click">
-            <StackPanel Orientation="Horizontal" Spacing="6">
-               <FontIcon Glyph="&#xE76B;" />
-               <TextBlock Text="Back" />
-            </StackPanel>
-         </Button>
-         <Button Grid.Column="1" Style="{StaticResource AccentButtonStyle}" AccessKey="S" x:Name="SaveCopiesButton" HorizontalAlignment="Stretch" Click="SaveCopiesButton_Click">
-            <StackPanel Orientation="Horizontal" Spacing="6">
-               <SymbolIcon Symbol="Save"/>
-               <TextBlock Text="Save" x:Name="SaveButtonText" />
-            </StackPanel>
-         </Button>
+         <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Text="Save a Copy" x:Name="TitleTextBlock"/>
+
+         <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource BodyStrongTextBlockStyle}">
+            An asterisk represents the original File Name.<LineBreak/>Each File's relative Path is used as Root unless an absulute Path is given.
+         </TextBlock>
+
+
+
+         <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox" />
+
+         <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+               <RowDefinition Height="*"/>
+               <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*"/>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <CheckBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Content="Open Files after saving" x:Name="OpenFilesAfterSave"/>
+
+            <CheckBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Content="Open Folders after saving" x:Name="OpenFoldersAfterSave"/>
+
+            <CheckBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Content="Export Fabrication Files for HTL 10" x:Name="ExportHTL10FabFilesCheckBox"/>
+
+
+         </Grid>
+
+
+         <Grid Grid.Row="5" Grid.Column="1" ColumnSpacing="5" HorizontalAlignment="Stretch">
+
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="1*"/>
+               <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" HorizontalAlignment="Stretch" AccessKey="B" x:Name="BackToMainFromSaveButton" Click="BackToMainFromSaveButton_Click">
+               <StackPanel Orientation="Horizontal" Spacing="6">
+                  <FontIcon Glyph="&#xE76B;" />
+                  <TextBlock Text="Back" />
+               </StackPanel>
+            </Button>
+            <Button Grid.Column="1" Style="{StaticResource AccentButtonStyle}" AccessKey="S" x:Name="SaveCopiesButton" HorizontalAlignment="Stretch" Click="SaveCopiesButton_Click">
+               <StackPanel Orientation="Horizontal" Spacing="6">
+                  <SymbolIcon Symbol="Save"/>
+                  <TextBlock Text="Save" x:Name="SaveButtonText" />
+               </StackPanel>
+            </Button>
+         </Grid>
+
+         <ListView Grid.Row="6" Grid.Column="1" VerticalAlignment="Bottom" x:Name="SavedFileLogListView" SelectionMode="None" />
+
       </Grid>
-
-      <ListView Grid.Row="6" Grid.Column="1" VerticalAlignment="Bottom" x:Name="SavedFileLogListView" SelectionMode="None" >
-
-      </ListView>
-
-   </Grid>
    </ScrollView>
 </Page>

@@ -640,6 +640,9 @@
     <AppxPackagedFile Include="C:\Users\Adrian\.nuget\packages\microsoft.windowsappsdk\1.5.240627000\runtimes\win-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\AppIconSource.png">
+      <PackagePath>Assets\AppIconSource.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\BadgeLogo.scale-100.png">
       <PackagePath>Assets\BadgeLogo.scale-100.png</PackagePath>
     </AppxPackagedFile>
@@ -690,9 +693,6 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SmallTile.scale-400.png">
       <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\Source-AppIcon.png">
-      <PackagePath>Assets\Source-AppIcon.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Adrian\source\repos\Silky\Silky\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
