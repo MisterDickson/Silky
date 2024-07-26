@@ -35,8 +35,17 @@
 
 
 
-         <TextBox x:ConnectionId='3' Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox"                               />
-
+         <Grid Grid.Row="2" Grid.Column="1" ColumnSpacing="5">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="10*"/>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+         
+            <TextBox x:ConnectionId='10' Grid.Column="0" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox"                               />
+            <Button x:ConnectionId='11' Grid.Column="1" VerticalAlignment="Bottom" x:Name="PickSavePathButton"                                 >
+               <SymbolIcon Symbol="Folder"/>
+            </Button>
+         </Grid>
          <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                <RowDefinition Height="*"/>
@@ -47,11 +56,11 @@
                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <CheckBox x:ConnectionId='8' Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Content="Open Files after saving" x:Name="OpenFilesAfterSave"/>
+            <CheckBox x:ConnectionId='7' Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Content="Open Files after saving" x:Name="OpenFilesAfterSave"/>
 
-            <CheckBox x:ConnectionId='9' Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Content="Open Folders after saving" x:Name="OpenFoldersAfterSave"/>
+            <CheckBox x:ConnectionId='8' Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Content="Open Folders after saving" x:Name="OpenFoldersAfterSave"/>
 
-            <CheckBox x:ConnectionId='10' Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Content="Export Fabrication Files for HTL 10" x:Name="ExportHTL10FabFilesCheckBox"/>
+            <CheckBox x:ConnectionId='9' Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Content="Export Fabrication Files for HTL 10" x:Name="ExportHTL10FabFilesCheckBox"/>
 
 
          </Grid>
@@ -64,21 +73,21 @@
                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:ConnectionId='5' Grid.Column="0" HorizontalAlignment="Stretch" AccessKey="B" x:Name="BackToMainFromSaveButton"                                       >
+            <Button x:ConnectionId='4' Grid.Column="0" HorizontalAlignment="Stretch" AccessKey="B" x:Name="BackToMainFromSaveButton"                                       >
                <StackPanel Orientation="Horizontal" Spacing="6">
                   <FontIcon Glyph="&#xE76B;" />
                   <TextBlock Text="Back" />
                </StackPanel>
             </Button>
-            <Button x:ConnectionId='6' Grid.Column="1" Style="{StaticResource AccentButtonStyle}" AccessKey="S" x:Name="SaveCopiesButton" HorizontalAlignment="Stretch"                               >
+            <Button x:ConnectionId='5' Grid.Column="1" Style="{StaticResource AccentButtonStyle}" AccessKey="S" x:Name="SaveCopiesButton" HorizontalAlignment="Stretch"                               >
                <StackPanel Orientation="Horizontal" Spacing="6">
                   <SymbolIcon Symbol="Save"/>
-                  <TextBlock x:ConnectionId='7' Text="Save" x:Name="SaveButtonText" />
+                  <TextBlock x:ConnectionId='6' Text="Save" x:Name="SaveButtonText" />
                </StackPanel>
             </Button>
          </Grid>
 
-         <ListView x:ConnectionId='4' Grid.Row="6" Grid.Column="1" VerticalAlignment="Bottom" x:Name="SavedFileLogListView" SelectionMode="None" />
+         <ListView x:ConnectionId='3' Grid.Row="6" Grid.Column="1" VerticalAlignment="Bottom" x:Name="SavedFileLogListView" SelectionMode="None" />
 
       </Grid>
    </ScrollView>

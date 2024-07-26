@@ -35,8 +35,17 @@
 
 
 
-         <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox" KeyDown="PathTextBox_KeyDown" />
-
+         <Grid Grid.Row="2" Grid.Column="1" ColumnSpacing="5">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="10*"/>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+         
+            <TextBox Grid.Column="0" VerticalAlignment="Center" Header="Path:" PlaceholderText="*_edited" x:Name="PathTextBox" KeyDown="PathTextBox_KeyDown" />
+            <Button Grid.Column="1" VerticalAlignment="Bottom" x:Name="PickSavePathButton" Click="PickSavePathButton_Click">
+               <SymbolIcon Symbol="Folder"/>
+            </Button>
+         </Grid>
          <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                <RowDefinition Height="*"/>

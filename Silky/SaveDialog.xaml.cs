@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Storage.Pickers;
 using Windows.Storage;
+using Windows.Storage.AccessCache;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -309,6 +310,22 @@ namespace Silky
       private void PathTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
       {
          if (e.Key == Windows.System.VirtualKey.Enter) SaveCopiesButton_Click(sender, e);
+      }
+
+      private async void PickSavePathButton_Click(object sender, RoutedEventArgs e)
+      {
+         var openPicker = new Windows.Storage.Pickers.FolderPicker();
+         var window = Intermediate.MainWindow;
+         var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+         WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hWnd);
+
+         openPicker.SuggestedStartLocation = PickerLocationId.Desktop;
+         openPicker.FileTypeFilter.Add("*");
+
+         StorageFolder folder = await openPicker.PickSingleFolderAsync();
+
+         if (folder is null) return;
+         PathTextBox.Text = folder.Path + @"\*_edited";
       }
    }
 }
