@@ -22,12 +22,12 @@
          </Grid.RowDefinitions>
 
          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="1"/>
          </Grid.ColumnDefinitions>
 
-         <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Text="Save a Copy" x:Name="TitleTextBlock"/>
+         <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TitleTextBlockStyle}" Text="Save a Copy" x:Name="TitleTextBlock" />
 
          <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource BodyStrongTextBlockStyle}">
             An asterisk represents the original File Name.<LineBreak/>Each File's relative Path is used as Root unless an absulute Path is given.
