@@ -10,7 +10,7 @@ namespace Silky
 {
    internal static class Intermediate
    {
-      public static class PresetText
+      public struct PresetText
       {
          public const string Default = "Preset Options";
 
@@ -25,9 +25,11 @@ namespace Silky
 
       public static Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
       public static Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-
+      
 
       public static Window MainWindow { get; set; }
+
+      public static ListView SavedFileLogListView { get; set; } // If something goes wrong during saving in another class like SilkyCore.cs, it should have access to the save log to display the error
 
       public static ListViewItem PrepareListViewItem(string displayName, string filePath, Exception e = null)
       {

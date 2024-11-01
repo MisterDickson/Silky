@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Silky")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d30694f373c540fe2ea0d57eb1b1ac9a80165637")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36965d4ce14df49c5d1bcc9dc3d8b3568004f072")]
 [assembly: System.Reflection.AssemblyProductAttribute("Silky")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Silky")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

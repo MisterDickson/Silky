@@ -7,11 +7,11 @@
 
     For more information on package manifest files, see http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="2588d3ca-2065-4736-9987-caf0caef0942" Publisher="CN=Adrian" Version="1.0.0.0" ProcessorArchitecture="x64" />
+  <Identity Name="2588d3ca-2065-4736-9987-caf0caef0942" Publisher="CN=Adrian" Version="2.0.0.0" ProcessorArchitecture="x64" />
   <mp:PhoneIdentity PhoneProductId="2588d3ca-2065-4736-9987-caf0caef0942" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Silky</DisplayName>
-    <PublisherDisplayName>Adrian</PublisherDisplayName>
+    <PublisherDisplayName>Adrian Helfer</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -28,6 +28,10 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png" />
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
         <uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape" />
+          <uap:Rotation Preference="landscapeFlipped" />
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.fileTypeAssociation">

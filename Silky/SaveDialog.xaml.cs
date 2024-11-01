@@ -29,6 +29,7 @@ namespace Silky
       {
          InitializeComponent();
          NavigationCacheMode = NavigationCacheMode.Enabled;
+         Intermediate.SavedFileLogListView = SavedFileLogListView;
       }
 
       public void AdjustUIGrammar()

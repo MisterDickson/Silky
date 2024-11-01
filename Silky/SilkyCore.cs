@@ -107,7 +107,10 @@ namespace Silky
             File.Delete(filePath);
 
             // rename the temporary file to the original file name
-            File.Move(tempFilePath, filePath);
+            try
+            { File.Move(tempFilePath, filePath); }
+            catch (Exception ex)
+            { Intermediate.SavedFileLogListView.Items.Add(Intermediate.PrepareListViewItem("Something went terribly wrong", "", ex)); }
 
             return filePath;
          }
