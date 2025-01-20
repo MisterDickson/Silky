@@ -101,15 +101,15 @@ namespace Silky
                                 {
                                     if (line.Contains(ValueDesignator))
                                     {
-                                        int layerIndex = line.IndexOf(layer) + layer.Length;
-                                        int layerEndIndex = line.IndexOf("\"", layerIndex);
-                                        string layerName = line.Substring(layerIndex, layerEndIndex - layerIndex);
                                         if (KiCadVersion > 7)
                                         { // kicad 8 doesn't have the layer in the same line
                                             sw.WriteLine(line);
                                             sw.WriteLine(sr.ReadLine());
                                             line = sr.ReadLine();
                                         }
+                                        int layerIndex = line.IndexOf(layer) + layer.Length;
+                                        int layerEndIndex = line.IndexOf("\"", layerIndex);
+                                        string layerName = line.Substring(layerIndex, layerEndIndex - layerIndex);
                                         writeLine = line.Replace(layerName, To);
                                         break;
                                     }
@@ -121,15 +121,15 @@ namespace Silky
                         {
                             if (line.Contains(PartDesignator + PartType))
                             {
-                                int layerIndex = line.IndexOf(layer) + layer.Length;
-                                int layerEndIndex = line.IndexOf("\"", layerIndex);
-                                string layerName = line.Substring(layerIndex, layerEndIndex - layerIndex);
                                 if (KiCadVersion > 7)
                                 { // kicad 8 doesn't have the layer in the same line
                                     sw.WriteLine(line);
                                     sw.WriteLine(sr.ReadLine());
                                     line = sr.ReadLine();
                                 }
+                                int layerIndex = line.IndexOf(layer) + layer.Length;
+                                int layerEndIndex = line.IndexOf("\"", layerIndex);
+                                string layerName = line.Substring(layerIndex, layerEndIndex - layerIndex);
                                 writeLine = line.Replace(layerName, To);
                             }
                         }
