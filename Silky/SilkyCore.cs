@@ -91,12 +91,6 @@ namespace Silky
 
                         if (From != "Part Value" && From != "Part Reference" && deepEnough)
                         {
-                            if (KiCadVersion > 7)
-                            {   // kicad 8 doesn't have the layer in the same line
-                                sw.WriteLine(line);
-                                line = sr.ReadLine();
-                                if (line == null) line = "";
-                            }
                             writeLine = line.Replace(From, To);
                         }
                         else if (From == "Part Value")
